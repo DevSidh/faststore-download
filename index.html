@@ -138,6 +138,18 @@
     .demo-cta-row { display: flex; flex-wrap: wrap; gap: 9px; margin-top: 16px; }
     .demo-secondary { min-height: 40px; padding: 0 13px; border: 1px solid #d7e0d5; border-radius: 9px; color: #28563d; background: white; font-weight: 750; cursor: pointer; }
     .demo-app .demo-primary:disabled { opacity: .5; cursor: not-allowed; }
+    .catalog-tools { max-width: 980px; margin: auto; }
+    .catalog-search-label { display: block; margin: 0 0 7px; color: #dbe4dc; font-size: .86rem; font-weight: 750; }
+    .catalog-filters { display: flex; flex-wrap: wrap; gap: 8px; margin: 9px 0 18px; }
+    .catalog-filter { min-height: 38px; padding: 0 13px; border: 1px solid var(--line); border-radius: 99px; color: var(--ink); background: #ffffff08; font: inherit; font-size: .82rem; cursor: pointer; }
+    .catalog-filter.active { border-color: var(--gold); color: #18271f; background: var(--gold); font-weight: 800; }
+    .catalog-grid { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 10px; }
+    .catalog-item { display: grid; grid-template-columns: 1fr auto; gap: 5px 12px; padding: 15px; border: 1px solid var(--line); border-radius: 14px; background: #ffffff08; }
+    .catalog-item strong { align-self: end; }
+    .catalog-item span { color: var(--muted); font-size: .8rem; }
+    .catalog-item b { grid-column: 2; grid-row: 1 / span 2; align-self: center; color: var(--gold); white-space: nowrap; }
+    .catalog-empty { grid-column: 1 / -1; padding: 22px; border: 1px dashed var(--line); border-radius: 14px; color: var(--muted); text-align: center; }
+    .catalog-footnote { margin: 17px 0 0; color: var(--muted); font-size: .84rem; line-height: 1.6; }
     .steps { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; counter-reset: step; }
     .step { padding: 24px; border: 1px solid var(--line); border-radius: 20px; background: #ffffff08; }
     .step:before { counter-increment: step; content: "0" counter(step); display: block; margin-bottom: 18px; color: var(--gold); font-size: .85rem; font-weight: 900; }
@@ -150,7 +162,8 @@
     .foot-inner { display: flex; align-items: center; justify-content: space-between; gap: 20px; }
     .foot-inner a { color: var(--gold); text-decoration: none; }
     @media (max-width: 850px) { .hero-grid,.demo-layout { grid-template-columns: 1fr; gap: 45px; } .hero { padding-top: 66px; } .hero-copy { max-width: 700px; } .phone-stage { order: 2; } .phone { transform: none; } .features { grid-template-columns: repeat(2,1fr); } .demo-layout { gap: 30px; } }
-    @media (max-width: 600px) { .wrap { width: min(100% - 28px, 1160px); } .nav { min-height: 66px; } .navlinks { display: none; } .nav .button { min-height: 42px; padding: 0 13px; font-size: .84rem; } .hero { padding: 55px 0 60px; } h1 { font-size: clamp(2.7rem, 14vw, 4rem); } .hero-copy { font-size: 1rem; } .phone { max-width: 305px; } .phone-screen { min-height: 465px; } .section { padding: 66px 0; } .features,.steps { grid-template-columns: 1fr; } .feature { min-height: 0; } .demo-content { min-height: 300px; padding: 23px; } .cta-inner,.foot-inner { align-items: flex-start; flex-direction: column; } .cta-inner .button { width: 100%; } }
+    @media (max-width: 850px) { .catalog-grid { grid-template-columns: repeat(2,minmax(0,1fr)); } }
+    @media (max-width: 600px) { .wrap { width: min(100% - 28px, 1160px); } .nav { min-height: 66px; } .navlinks { display: none; } .nav .button { min-height: 42px; padding: 0 13px; font-size: .84rem; } .hero { padding: 55px 0 60px; } h1 { font-size: clamp(2.7rem, 14vw, 4rem); } .hero-copy { font-size: 1rem; } .phone { max-width: 305px; } .phone-screen { min-height: 465px; } .section { padding: 66px 0; } .features,.steps { grid-template-columns: 1fr; } .feature { min-height: 0; } .demo-content { min-height: 300px; padding: 23px; } .catalog-grid { grid-template-columns: 1fr; } .catalog-item { padding: 13px; } .cta-inner,.foot-inner { align-items: flex-start; flex-direction: column; } .cta-inner .button { width: 100%; } }
     @media (prefers-reduced-motion: reduce) { *,*::before,*::after { scroll-behavior: auto !important; transition-duration: .01ms !important; } }
   </style>
 </head>
@@ -159,7 +172,7 @@
     <div class="wrap nav">
       <a class="brand" href="#top" aria-label="FastStore home"><span class="brand-mark">F</span><span>FastStore</span></a>
       <nav class="navlinks" aria-label="Main navigation">
-        <a href="#features">Features</a><a href="#demo">Explore demo</a><a href="#how">How it works</a>
+        <a href="#features">Features</a><a href="#catalog">Products & prices</a><a href="#demo">Explore demo</a><a href="#how">How it works</a>
       </nav>
       <a class="button" href="https://github.com/DevSidh/Ram-Prasad-Kirana-/releases/download/v3.1.4/Ram-Prasad-General-Store-3.1.4.apk">Get the app <span aria-hidden="true">↓</span></a>
     </div>
@@ -175,7 +188,7 @@
             <a class="button" href="https://github.com/DevSidh/Ram-Prasad-Kirana-/releases/download/v3.1.4/Ram-Prasad-General-Store-3.1.4.apk">Download Android app <span aria-hidden="true">↓</span></a>
             <a class="button secondary" href="#demo">Explore the app <span aria-hidden="true">↘</span></a>
           </div>
-          <div class="hero-note">Android app · Official release · Free to download</div>
+          <div class="hero-note">Android APK · Version 3.1.4 · Free download · <a href="https://github.com/DevSidh/Ram-Prasad-Kirana-/releases/latest">See release notes</a></div>
         </div>
         <div class="phone-stage" aria-label="Illustration of the FastStore customer app">
           <div class="phone"><div class="phone-screen">
@@ -217,9 +230,31 @@
       </div>
     </section>
 
+    <section class="section alt" id="catalog">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="section-kicker">Store catalogue · checked 28 Oct 2026</div>
+          <h2>Products and current listed prices</h2>
+          <p>This snapshot is from the customer catalogue. Prices are in Nepalese rupees (Rs.) and can change; confirm the final price in FastStore before checkout. Search the listed products below.</p>
+        </div>
+        <div class="catalog-tools">
+          <label class="catalog-search-label" for="catalog-search">Search the catalogue</label>
+          <input id="catalog-search" class="demo-search" type="search" placeholder="Search product or category…" autocomplete="off">
+          <div class="catalog-filters" role="group" aria-label="Filter catalogue">
+            <button class="catalog-filter active" type="button" data-catalog-filter="all">All products</button>
+            <button class="catalog-filter" type="button" data-catalog-filter="everyday">Everyday store</button>
+            <button class="catalog-filter" type="button" data-catalog-filter="drinks">Drinks menu</button>
+            <button class="catalog-filter" type="button" data-catalog-filter="wholesale">Wholesale</button>
+          </div>
+          <div id="catalog-results" class="catalog-grid" aria-live="polite"></div>
+          <p class="catalog-footnote">Wholesale note: the current customer catalogue does not list any products with wholesale prices. Wholesale sample cases in the interactive demo are examples only, not live offers.</p>
+        </div>
+      </div>
+    </section>
+
     <section class="section" id="features">
       <div class="wrap">
-        <div class="section-head"><div class="section-kicker">Made for everyday shopping</div><h2>Everything you need to shop with ease</h2><p>A quick tour of the customer side of FastStore—from finding your favourites to checking in on an order.</p></div>
+        <div class="section-head"><div class="section-kicker">FastStore customer app</div><h2>Your store, from browsing to delivery</h2><p>FastStore is the customer shopping app for Ram Prasad General Store in Janakpur. Explore the customer features below; store staff use a separate billing and management area.</p></div>
         <div class="features">
           <article class="feature"><div class="feature-icon">⌕</div><h3>Find products quickly</h3><p>Search and browse the store catalogue to find everyday items without scrolling through everything.</p></article>
           <article class="feature"><div class="feature-icon">🥤</div><h3>Explore the drinks menu</h3><p>Open the dedicated drinks section and discover featured beverages and other drink options.</p></article>
@@ -230,6 +265,11 @@
           <article class="feature"><div class="feature-icon">🔔</div><h3>Stay up to date</h3><p>See account notifications and store updates from inside the app.</p></article>
           <article class="feature"><div class="feature-icon">🎁</div><h3>Build your shopping streak</h3><p>Keep track of buying-day streak activity and see the rewards available in your account.</p></article>
           <article class="feature"><div class="feature-icon">🧾</div><h3>Keep order details handy</h3><p>Review order information and download an invoice for a completed order when available.</p></article>
+          <article class="feature"><div class="feature-icon">📍</div><h3>Manage delivery addresses</h3><p>Save and update your addresses for a smoother checkout. Delivery options depend on the store’s service area.</p></article>
+          <article class="feature"><div class="feature-icon">💳</div><h3>Choose checkout payment options</h3><p>Review the payment methods presented at checkout and choose an available option for your order.</p></article>
+          <article class="feature"><div class="feature-icon">🌙</div><h3>Personalize your app</h3><p>Adjust appearance and language preferences in the customer account settings.</p></article>
+          <article class="feature"><div class="feature-icon">⭐</div><h3>Rate purchased products</h3><p>Share feedback and ratings for eligible products after purchase.</p></article>
+          <article class="feature"><div class="feature-icon">🔐</div><h3>Manage your account</h3><p>Register or sign in, update your profile, manage notifications, and access account and privacy options.</p></article>
         </div>
       </div>
     </section>
@@ -238,9 +278,9 @@
       <div class="wrap">
         <div class="section-head"><div class="section-kicker">Get started</div><h2>Shop in a few simple steps</h2><p>Download the Android app, sign in or create your account, and you’re ready to explore.</p></div>
         <div class="steps">
-          <article class="step"><h3>Install FastStore</h3><p>Download the official APK. Android may ask you to allow installation from your browser for this direct download.</p></article>
+          <article class="step"><h3>Download FastStore for Android</h3><p>Get the current Android APK from the official GitHub release. Open the downloaded APK on your phone and approve Android’s install prompt if it appears.</p></article>
           <article class="step"><h3>Browse and add items</h3><p>Search products, explore drinks and wholesale, then add the items you want to your cart.</p></article>
-          <article class="step"><h3>Apply offers and checkout</h3><p>Check available coupons, review your cart, and place your order through the app.</p></article>
+          <article class="step"><h3>Apply offers and place an order</h3><p>Check coupons, delivery and payment options, then review the order total before submitting your order.</p></article>
         </div>
       </div>
     </section>
@@ -249,6 +289,47 @@
   </main>
   <footer class="site-footer"><div class="wrap foot-inner"><span>© <span id="year"></span> Ram Prasad General Store · FastStore</span><a href="https://github.com/DevSidh/Ram-Prasad-Kirana-/releases/latest">View latest app release</a></div></footer>
   <script>
+    const catalogSnapshot = [
+      ['Sattu - 500g','Flour & grains',147,false], ['Colgate Toothpaste - 190g','Oral Care',165,false], ['Chakki Aata','Flour & grains',580,false],
+      ['Bikaji Bhujiya','Snacks & Namkeen',235,false], ['Kuchkuch Dalbut','Snacks & Namkeen',215,false], ['Moong Dal','Dal',210,false],
+      ['Chana Dal','Dal',172,false], ['Pepsi','Drinks',90,true], ['Tokla tea','Drinks',50,true], ['Tokla Tea small sachet','Drinks',10,true],
+      ['Vim Washing soap','Soap',45,false], ['Rajnigandha','Tobacco Products',50,false], ['Horlicks Small Sachet','Drinks',10,true],
+      ['DETOL SKINCARE SOAP','Soap',60,false], ['DETOL S0AP','Soap',71,false], ['LAYS - LARGE','Chips',80,false], ['Lays - small','Chips',50,false],
+      ['Redbull - 250ml','Drinks',115,true], ['Sagar MilkPowder - 500g','Masalas',560,false], ['Sugar','Masalas',120,false],
+      ['Sunflower - 1 litre','Oils',280,false], ['Sprite- 90ml','Drinks',95,true], ['Coca Cola','Drinks',95,true],
+      ['Oreo Biscuit','Biscuits',20,false], ['Chicken Masala','Masalas',20,false], ['Marie Gold Biscuit','Biscuits',20,false], ['Fortune Oil','Oils',250,false]
+    ];
+    let catalogFilter = 'all';
+    function renderCatalog() {
+      const host = document.getElementById('catalog-results');
+      if (!host) return;
+      const query = (document.getElementById('catalog-search')?.value || '').trim().toLowerCase();
+      const visible = catalogSnapshot.filter(([name, category, , drink]) => {
+        const inFilter = catalogFilter === 'all' || (catalogFilter === 'drinks' && drink) || (catalogFilter === 'everyday' && !drink) || catalogFilter === 'wholesale' && false;
+        return inFilter && `${name} ${category}`.toLowerCase().includes(query);
+      });
+      host.replaceChildren();
+      if (catalogFilter === 'wholesale') {
+        const note = document.createElement('div'); note.className = 'catalog-empty';
+        note.textContent = 'No products with wholesale pricing are currently listed in the customer catalogue.'; host.append(note); return;
+      }
+      if (!visible.length) { const empty = document.createElement('div'); empty.className = 'catalog-empty'; empty.textContent = 'No matching products. Try another search.'; host.append(empty); return; }
+      visible.forEach(([name, category, price, drink]) => {
+        const card = document.createElement('article'); card.className = 'catalog-item';
+        const title = document.createElement('strong'); title.textContent = name;
+        const group = document.createElement('span'); group.textContent = drink ? `Drinks menu · ${category}` : category;
+        const amount = document.createElement('b'); amount.textContent = `Rs. ${price.toFixed(2)}`;
+        card.append(title, group, amount); host.append(card);
+      });
+    }
+    document.getElementById('catalog-search')?.addEventListener('input', renderCatalog);
+    document.querySelectorAll('[data-catalog-filter]').forEach(button => button.addEventListener('click', () => {
+      catalogFilter = button.dataset.catalogFilter;
+      document.querySelectorAll('[data-catalog-filter]').forEach(item => item.classList.toggle('active', item === button));
+      renderCatalog();
+    }));
+    renderCatalog();
+
     const products = [
       { id: 'milk', name: 'Fresh Milk', category: 'Groceries', price: 110, unit: '1 litre', icon: '🥛' },
       { id: 'rice', name: 'Everyday Rice', category: 'Groceries', price: 185, unit: '1 kg', icon: '🍚' },
