@@ -2,594 +2,91 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#10251f">
-  <meta name="description" content="Explore the FastStore customer app for Ram Prasad General Store: browse groceries, shop drinks and wholesale, use coupons, and follow your orders.">
-  <title>FastStore — Your store, in your hands</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#f6f4ff">
+  <meta name="description" content="Explore FastStore, the Ram Prasad General Store customer app for shopping groceries, drinks, offers and orders in Janakpur, Nepal.">
+  <title>FastStore — Ram Prasad General Store</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
-    :root {
-      color-scheme: dark;
-      --ink: #f6f6ef;
-      --muted: #b7c2b8;
-      --green: #10251f;
-      --green-2: #17392e;
-      --green-3: #214b3c;
-      --gold: #f4ca55;
-      --mint: #9fdbb2;
-      --line: #ffffff1c;
-      font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
-      scroll-behavior: smooth;
-    }
-    * { box-sizing: border-box; }
-    body { margin: 0; background: var(--green); color: var(--ink); }
-    a { color: inherit; }
-    .wrap { width: min(1160px, calc(100% - 40px)); margin: auto; }
-    .topbar { position: sticky; top: 0; z-index: 5; border-bottom: 1px solid var(--line); background: #10251fea; backdrop-filter: blur(14px); }
-    .nav { min-height: 76px; display: flex; align-items: center; justify-content: space-between; gap: 22px; }
-    .brand { display: flex; align-items: center; gap: 11px; text-decoration: none; font-weight: 800; letter-spacing: -.03em; }
-    .brand-mark { width: 39px; height: 39px; display: grid; place-items: center; border-radius: 13px; background: var(--gold); color: var(--green); font-size: 20px; }
-    .navlinks { display: flex; align-items: center; gap: 26px; }
-    .navlinks a { color: var(--muted); text-decoration: none; font-size: .92rem; }
-    .navlinks a:hover { color: var(--ink); }
-    .button { display: inline-flex; align-items: center; justify-content: center; gap: 9px; min-height: 48px; padding: 0 19px; border: 0; border-radius: 14px; background: var(--gold); color: #17231c; text-decoration: none; font-weight: 800; box-shadow: 0 9px 24px #f4ca5520; transition: transform .18s ease, filter .18s ease; }
-    .button:hover { transform: translateY(-2px); filter: brightness(1.07); }
-    .button.secondary { border: 1px solid var(--line); background: #ffffff0c; color: var(--ink); box-shadow: none; }
-    .hero { position: relative; overflow: hidden; padding: 92px 0 86px; background: radial-gradient(ellipse at 83% 37%, #346348 0, transparent 32%), linear-gradient(130deg, #10251f 10%, #17392e 100%); }
-    .hero:after { content: ""; position: absolute; width: 420px; height: 420px; right: -115px; bottom: -260px; border: 1px solid #ffffff18; border-radius: 50%; box-shadow: 0 0 0 38px #ffffff08, 0 0 0 78px #ffffff06; }
-    .hero-grid { position: relative; z-index: 1; display: grid; grid-template-columns: 1.05fr .95fr; align-items: center; gap: 64px; }
-    .eyebrow { display: inline-flex; align-items: center; gap: 8px; padding: 8px 12px; border: 1px solid #ffffff20; border-radius: 99px; color: var(--mint); background: #ffffff08; font-size: .82rem; font-weight: 700; }
-    .eyebrow i { width: 7px; height: 7px; border-radius: 50%; background: var(--gold); box-shadow: 0 0 12px var(--gold); }
-    h1 { max-width: 680px; margin: 22px 0 18px; font-size: clamp(2.8rem, 6vw, 5rem); line-height: .99; letter-spacing: -.065em; }
-    h1 span { color: var(--gold); }
-    .hero-copy { max-width: 550px; margin: 0 0 28px; color: #d1dcd3; font-size: 1.08rem; line-height: 1.75; }
-    .hero-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; }
-    .hero-note { margin-top: 17px; color: #aebdb2; font-size: .82rem; }
-    .phone-stage { display: flex; justify-content: center; perspective: 1000px; }
-    .phone { width: min(330px, 100%); padding: 10px; border: 1px solid #ffffff38; border-radius: 38px; background: #07110e; box-shadow: 0 34px 90px #0007, inset 0 0 0 2px #ffffff0a; transform: rotateY(-7deg) rotateX(2deg); }
-    .phone-screen { min-height: 490px; overflow: hidden; border-radius: 29px; background: #f3f4ed; color: #17231c; }
-    .status { display: flex; justify-content: space-between; padding: 13px 17px 8px; font-size: .66rem; font-weight: 800; }
-    .app-head { display: flex; justify-content: space-between; align-items: center; padding: 8px 16px 14px; font-weight: 850; }
-    .app-head small { display: block; margin-top: 3px; color: #6b786f; font-size: .64rem; font-weight: 500; }
-    .avatar { display: grid; width: 33px; height: 33px; place-items: center; border-radius: 50%; color: #18382b; background: #dbe9dc; }
-    .app-search { margin: 0 14px 12px; padding: 10px 12px; border: 1px solid #e0e4dc; border-radius: 11px; color: #829086; background: white; font-size: .72rem; }
-    .app-promo { margin: 0 14px 14px; padding: 17px; border-radius: 16px; color: white; background: linear-gradient(120deg, #255441, #578351); }
-    .app-promo .tiny { color: #d7e8c9; font-size: .6rem; }
-    .app-promo strong { display: block; max-width: 180px; margin-top: 5px; font-size: 1.1rem; line-height: 1.1; }
-    .app-promo .tag { display: inline-block; margin-top: 12px; padding: 6px 9px; border-radius: 7px; color: #17392e; background: var(--gold); font-size: .62rem; font-weight: 900; }
-    .app-section-title { display: flex; justify-content: space-between; margin: 15px 15px 9px; font-size: .76rem; font-weight: 850; }
-    .app-section-title span { color: #578351; font-size: .62rem; }
-    .app-cats { display: grid; grid-template-columns: repeat(4,1fr); gap: 8px; padding: 0 14px; }
-    .app-cat { padding: 10px 4px; border: 1px solid #e5e8e0; border-radius: 12px; background: white; text-align: center; }
-    .app-cat b { display: block; font-size: 1.15rem; }
-    .app-cat small { display: block; margin-top: 4px; color: #68756b; font-size: .55rem; }
-    .app-products { display: flex; gap: 9px; padding: 0 14px; }
-    .app-product { flex: 1; padding: 9px; border: 1px solid #e5e8e0; border-radius: 12px; background: white; }
-    .product-visual { height: 58px; display: grid; place-items: center; margin-bottom: 7px; border-radius: 8px; background: #f4f2e9; font-size: 1.8rem; }
-    .app-product strong { display: block; font-size: .62rem; }
-    .app-product small { color: #6e7c70; font-size: .56rem; }
-    .tabbar { display: flex; justify-content: space-around; margin-top: 13px; padding: 11px 4px 12px; border-top: 1px solid #e5e8e0; background: white; }
-    .tabbar button { border: 0; background: transparent; color: #79857a; font-size: .58rem; cursor: pointer; }
-    .tabbar button.active { color: #1a6547; font-weight: 900; }
-    .section { padding: 88px 0; }
-    .section.alt { background: #0c1e19; }
-    .section-head { max-width: 710px; margin: 0 auto 42px; text-align: center; }
-    .section-kicker { color: var(--mint); font-size: .78rem; font-weight: 850; letter-spacing: .12em; text-transform: uppercase; }
-    h2 { margin: 12px 0; font-size: clamp(2rem, 4.5vw, 3.25rem); line-height: 1.08; letter-spacing: -.05em; }
-    .section-head p { margin: 0; color: var(--muted); line-height: 1.7; }
-    .features { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; }
-    .feature { min-height: 210px; padding: 24px; border: 1px solid var(--line); border-radius: 20px; background: linear-gradient(140deg, #ffffff0c, #ffffff04); }
-    .feature-icon { width: 45px; height: 45px; display: grid; place-items: center; border-radius: 14px; background: #f4ca551a; font-size: 1.35rem; }
-    .feature h3 { margin: 18px 0 9px; font-size: 1.08rem; }
-    .feature p { margin: 0; color: var(--muted); font-size: .93rem; line-height: 1.65; }
-    .demo-layout { display: grid; grid-template-columns: .82fr 1.18fr; align-items: center; gap: 52px; }
-    .demo-copy h2 { margin-top: 13px; }
-    .demo-copy p { color: var(--muted); line-height: 1.75; }
-    .demo-points { display: grid; gap: 12px; margin: 24px 0 0; padding: 0; list-style: none; }
-    .demo-points li { display: flex; align-items: flex-start; gap: 10px; color: #dbe4dc; line-height: 1.5; }
-    .check { flex: 0 0 auto; display: grid; width: 22px; height: 22px; place-items: center; border-radius: 50%; color: var(--green); background: var(--mint); font-size: .74rem; font-weight: 900; }
-    .demo-card { overflow: hidden; border: 1px solid var(--line); border-radius: 24px; background: #17352b; box-shadow: 0 28px 70px #0003; }
-    .demo-controls { display: flex; gap: 8px; overflow-x: auto; padding: 15px; border-bottom: 1px solid var(--line); }
-    .demo-controls button { flex: 0 0 auto; padding: 10px 14px; border: 1px solid #ffffff20; border-radius: 99px; color: #d9e3da; background: transparent; cursor: pointer; }
-    .demo-controls button[aria-selected="true"] { border-color: var(--gold); color: #1b2d22; background: var(--gold); font-weight: 800; }
-    .demo-content { min-height: 280px; padding: 30px; }
-    .demo-preview-label { display: inline-flex; align-items: center; gap: 8px; margin-bottom: 18px; padding: 7px 10px; border: 1px solid #ffffff20; border-radius: 99px; color: #d8e9db; background: #ffffff08; font-size: .72rem; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; }
-    .demo-preview-label i { width: 7px; height: 7px; border-radius: 50%; background: var(--mint); box-shadow: 0 0 10px var(--mint); }
-    .demo-content h3 { letter-spacing: -.03em; }
-    .demo-content h3 { margin: 0 0 12px; font-size: 1.55rem; }
-    .demo-content p { max-width: 620px; color: #c1d0c4; line-height: 1.7; }
-    .demo-tiles { display: flex; flex-wrap: wrap; gap: 9px; margin-top: 19px; }
-    .demo-tiles span { padding: 9px 12px; border: 1px solid #ffffff1e; border-radius: 11px; background: #ffffff09; font-size: .84rem; }
-    .demo-app { min-height: 390px; padding: 22px; background: #f4f5ef; color: #1a2b22; }
-    .demo-toolbar { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin: -22px -22px 20px; padding: 15px 20px; border-bottom: 1px solid #dfe5dc; background: #fff; }
-    .demo-brand { font-size: .85rem; font-weight: 850; }
-    .demo-cart-button { padding: 8px 11px; border: 1px solid #d9e2d8; border-radius: 10px; color: #20513a; background: #f8faf6; font-weight: 750; cursor: pointer; }
-    .demo-cart-button b { display: inline-grid; min-width: 20px; height: 20px; place-items: center; margin-left: 4px; border-radius: 50%; color: #17392e; background: var(--gold); }
-    .demo-app .section-kicker { color: #39805c; font-size: .68rem; }
-    .demo-app h3 { margin: 8px 0; font-size: 1.35rem; letter-spacing: -.035em; }
-    .demo-app p { margin: 7px 0 18px; color: #617168; font-size: .9rem; line-height: 1.55; }
-    .demo-notice { margin: 0 0 17px; padding: 9px 11px; border: 1px solid #e6d99f; border-radius: 10px; color: #66551e; background: #fff9dd; font-size: .75rem; line-height: 1.45; }
-    .demo-category-row { display: flex; flex-wrap: wrap; gap: 9px; margin: 18px 0; }
-    .demo-category { flex: 1 1 125px; min-height: 84px; padding: 13px; border: 1px solid #dfe7dc; border-radius: 14px; color: #1e3529; background: white; text-align: left; cursor: pointer; }
-    .demo-category strong,.demo-category small { display: block; }
-    .demo-category strong { margin-top: 5px; }
-    .demo-category small { margin-top: 3px; color: #728076; }
-    .demo-search { width: 100%; min-height: 43px; margin: 2px 0 14px; padding: 0 13px; border: 1px solid #dbe3d9; border-radius: 11px; color: #263a2f; background: white; font: inherit; }
-    .demo-products { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 10px; }
-    .demo-product { padding: 12px; border: 1px solid #e0e6dc; border-radius: 14px; background: white; }
-    .demo-product-emoji { display: grid; height: 70px; place-items: center; margin-bottom: 9px; border-radius: 10px; background: #f1f3e9; font-size: 2rem; }
-    .demo-product-name { font-size: .89rem; font-weight: 800; }
-    .demo-product-meta { margin-top: 3px; color: #738077; font-size: .73rem; }
-    .demo-product-bottom { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-top: 10px; }
-    .demo-product-price { color: #1f553b; font-size: .85rem; font-weight: 850; }
-    .demo-add,.demo-primary { min-height: 36px; padding: 0 12px; border: 0; border-radius: 9px; color: #17392e; background: var(--gold); font-weight: 850; cursor: pointer; }
-    .demo-primary { min-height: 44px; padding: 0 16px; }
-    .demo-empty { padding: 24px 12px; border: 1px dashed #cbd6c9; border-radius: 14px; color: #65756a; text-align: center; }
-    .demo-cart-list { display: grid; gap: 9px; }
-    .demo-cart-row { display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 10px; padding: 12px; border: 1px solid #e0e6dc; border-radius: 13px; background: white; }
-    .demo-cart-row strong,.demo-cart-row small { display: block; }
-    .demo-cart-row small { margin-top: 4px; color: #718076; }
-    .demo-quantity { display: flex; align-items: center; gap: 7px; }
-    .demo-quantity button { width: 29px; height: 29px; border: 1px solid #d7e0d5; border-radius: 8px; color: #24543a; background: #f8faf6; font-weight: 900; cursor: pointer; }
-    .demo-total { display: flex; justify-content: space-between; gap: 12px; margin-top: 8px; padding-top: 13px; border-top: 1px solid #dfe5dc; font-weight: 850; }
-    .demo-coupon-box,.demo-info-card { margin: 13px 0; padding: 15px; border: 1px solid #dfe7dc; border-radius: 13px; background: white; }
-    .demo-coupon-form { display: flex; gap: 8px; margin-top: 11px; }
-    .demo-coupon-form input { min-width: 0; flex: 1; padding: 0 11px; border: 1px solid #dbe3d9; border-radius: 9px; font: inherit; text-transform: uppercase; }
-    .demo-status { min-height: 20px; margin: 8px 0 0 !important; color: #31754e !important; font-size: .78rem !important; }
-    .demo-cta-row { display: flex; flex-wrap: wrap; gap: 9px; margin-top: 16px; }
-    .demo-secondary { min-height: 40px; padding: 0 13px; border: 1px solid #d7e0d5; border-radius: 9px; color: #28563d; background: white; font-weight: 750; cursor: pointer; }
-    .demo-app .demo-primary:disabled { opacity: .5; cursor: not-allowed; }
-    .catalog-tools { max-width: 980px; margin: auto; }
-    .catalog-search-label { display: block; margin: 0 0 7px; color: #dbe4dc; font-size: .86rem; font-weight: 750; }
-    .catalog-filters { display: flex; flex-wrap: wrap; gap: 8px; margin: 9px 0 18px; }
-    .catalog-filter { min-height: 38px; padding: 0 13px; border: 1px solid var(--line); border-radius: 99px; color: var(--ink); background: #ffffff08; font: inherit; font-size: .82rem; cursor: pointer; }
-    .catalog-filter.active { border-color: var(--gold); color: #18271f; background: var(--gold); font-weight: 800; }
-    .catalog-grid { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 10px; }
-    .catalog-item { display: grid; grid-template-columns: 1fr auto; gap: 5px 12px; padding: 15px; border: 1px solid var(--line); border-radius: 14px; background: #ffffff08; }
-    .catalog-item strong { align-self: end; }
-    .catalog-item span { color: var(--muted); font-size: .8rem; }
-    .catalog-item b { grid-column: 2; grid-row: 1 / span 2; align-self: center; color: var(--gold); white-space: nowrap; }
-    .catalog-empty { grid-column: 1 / -1; padding: 22px; border: 1px dashed var(--line); border-radius: 14px; color: var(--muted); text-align: center; }
-    .catalog-footnote { margin: 17px 0 0; color: var(--muted); font-size: .84rem; line-height: 1.6; }
-    .steps { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; counter-reset: step; }
-    .step { padding: 24px; border: 1px solid var(--line); border-radius: 20px; background: #ffffff08; }
-    .step:before { counter-increment: step; content: "0" counter(step); display: block; margin-bottom: 18px; color: var(--gold); font-size: .85rem; font-weight: 900; }
-    .step h3 { margin: 0 0 8px; }
-    .step p { margin: 0; color: var(--muted); line-height: 1.65; }
-    .cta { padding: 70px 0; background: linear-gradient(120deg, #204d3c, #17392e); }
-    .cta-inner { display: flex; align-items: center; justify-content: space-between; gap: 28px; }
-    .cta h2 { max-width: 650px; margin: 0; }
-    footer.site-footer { padding: 27px 0; color: #9faea3; background: #091711; font-size: .86rem; }
-    .foot-inner { display: flex; align-items: center; justify-content: space-between; gap: 20px; }
-    .foot-inner a { color: var(--gold); text-decoration: none; }
-    @media (max-width: 850px) { .hero-grid,.demo-layout { grid-template-columns: 1fr; gap: 45px; } .hero { padding-top: 66px; } .hero-copy { max-width: 700px; } .phone-stage { order: 2; } .phone { transform: none; } .features { grid-template-columns: repeat(2,1fr); } .demo-layout { gap: 30px; } }
-    @media (max-width: 850px) { .catalog-grid { grid-template-columns: repeat(2,minmax(0,1fr)); } }
-    @media (max-width: 600px) { .wrap { width: min(100% - 28px, 1160px); } .nav { min-height: 66px; } .navlinks { display: none; } .nav .button { min-height: 42px; padding: 0 13px; font-size: .84rem; } .hero { padding: 55px 0 60px; } h1 { font-size: clamp(2.7rem, 14vw, 4rem); } .hero-copy { font-size: 1rem; } .phone { max-width: 305px; } .phone-screen { min-height: 465px; } .section { padding: 66px 0; } .features,.steps { grid-template-columns: 1fr; } .feature { min-height: 0; } .demo-content { min-height: 300px; padding: 23px; } .catalog-grid { grid-template-columns: 1fr; } .catalog-item { padding: 13px; } .cta-inner,.foot-inner { align-items: flex-start; flex-direction: column; } .cta-inner .button { width: 100%; } }
-    @media (prefers-reduced-motion: reduce) { *,*::before,*::after { scroll-behavior: auto !important; transition-duration: .01ms !important; } }
+    :root{color-scheme:light;--bg:#f6f4ff;--fg:#14122b;--muted:#5b5878;--card:#ffffffd9;--line:#14122b1a;--a:#6d4aff;--b:#00a990;--soft:#eeebff;--shadow:0 25px 80px #21166318;font-family:'Space Grotesk',system-ui,sans-serif;scroll-behavior:smooth}
+    :root[data-theme=dark]{color-scheme:dark;--bg:#0b0a1a;--fg:#f1efff;--muted:#a7a3c9;--card:#ffffff0f;--line:#ffffff1f;--a:#a995ff;--b:#55ddc0;--soft:#201c3a;--shadow:0 25px 80px #0007}
+    *{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--fg);line-height:1.55;overflow-x:hidden}a{color:inherit}.wrap{width:min(1160px,calc(100% - 40px));margin:auto}.glow{position:fixed;z-index:-1;pointer-events:none;width:450px;height:450px;border-radius:50%;filter:blur(95px);opacity:.34}.glow.one{background:#9677ff;left:-160px;top:-180px}.glow.two{background:#5be3c4;right:-170px;bottom:-190px}
+    header{position:sticky;top:0;z-index:10;border-bottom:1px solid var(--line);background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(18px)}.nav{min-height:72px;display:flex;align-items:center;justify-content:space-between;gap:18px}.brand{display:flex;align-items:center;gap:10px;text-decoration:none;font-weight:700}.brand i{width:38px;height:38px;border-radius:12px;display:grid;place-items:center;color:#fff;font-style:normal;background:linear-gradient(135deg,var(--a),var(--b))}.navlinks{display:flex;align-items:center;gap:22px}.navlinks a{text-decoration:none;color:var(--muted);font-size:.92rem}.navlinks a:hover{color:var(--fg)}.button{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:46px;padding:0 17px;border:0;border-radius:13px;text-decoration:none;font:inherit;font-weight:700;color:#fff;background:linear-gradient(135deg,#6d4aff,#8a6bff);box-shadow:0 10px 30px #6d4aff30;cursor:pointer}.button.ghost{background:var(--card);color:var(--fg);border:1px solid var(--line);box-shadow:none}.button:hover{filter:brightness(1.06);transform:translateY(-1px)}
+    .hero{padding:44px 0 68px}.hero-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}.hero-copy{max-width:555px}.tag{display:inline-flex;gap:8px;align-items:center;border:1px solid var(--line);border-radius:99px;padding:7px 13px;background:var(--card);font-size:.82rem;color:var(--muted)}.tag i{width:8px;height:8px;border-radius:50%;background:var(--b)}h1{font-size:clamp(2.7rem,6vw,5rem);letter-spacing:-.065em;line-height:1.01;margin:18px 0}h1 span{background:linear-gradient(90deg,var(--a),var(--b));background-clip:text;color:transparent}.lead{max-width:540px;color:var(--muted);font-size:1.08rem;line-height:1.72}.actions{display:flex;gap:11px;flex-wrap:wrap;margin:24px 0 12px}.subnote{font-size:.84rem;color:var(--muted)}.stats{display:flex;gap:28px;flex-wrap:wrap;margin-top:26px}.stats strong{display:block;font-size:1.45rem}.stats span{color:var(--muted);font-size:.78rem}
+    .phone-stage{display:grid;place-items:center;perspective:1200px}.phone{position:relative;width:min(365px,100%);height:710px;padding:10px;border-radius:46px;background:linear-gradient(145deg,#454555,#101017);box-shadow:var(--shadow),0 0 0 2px #75758b,inset 0 0 0 2px #000;transform:rotateY(-5deg);transition:transform .2s}.phone:before,.phone:after{content:"";position:absolute;right:-4px;top:145px;width:4px;height:72px;border-radius:0 4px 4px 0;background:#77778b}.phone:after{left:-4px;right:auto;top:113px;height:44px;border-radius:4px 0 0 4px}.screen{height:100%;overflow:hidden;position:relative;border-radius:37px;background:#fafaff;color:#17152f;display:flex;flex-direction:column}.island{position:absolute;top:8px;left:50%;transform:translateX(-50%);z-index:4;width:82px;height:22px;border-radius:20px;background:#08080c}.status{height:34px;flex:none;display:flex;justify-content:space-between;padding:11px 18px 0;font-size:10px;font-weight:700}.mobile-app{flex:1;overflow:auto;scrollbar-width:none;padding:5px 13px 12px}.mobile-app::-webkit-scrollbar{display:none}.mobile-app h2{font-size:17px;line-height:1.3;margin:8px 0 2px}.mobile-app .muted{font-size:11px;color:#706d89;margin:0 0 10px}.mobile-search{width:100%;height:39px;padding:0 12px;border:1px solid #e5e2f6;border-radius:12px;font:inherit;font-size:11px;background:#fff;color:#17152f}.promo{margin:11px 0;padding:13px;border-radius:14px;color:#fff;background:linear-gradient(120deg,#6849e9,#00a990);font-size:11px}.promo b{display:block;font-size:14px}.chips{display:flex;gap:6px;overflow:auto;padding:8px 0;scrollbar-width:none}.chip{flex:none;padding:6px 10px;border:0;border-radius:99px;background:#eeebff;color:#4939a4;font:inherit;font-size:10px;cursor:pointer}.chip.active{background:#6d4aff;color:#fff}.mobile-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}.m-product{min-width:0;padding:9px;border:1px solid #e9e6f5;border-radius:13px;background:white}.m-product .emoji{height:46px;display:grid;place-items:center;border-radius:9px;background:#f3f1fb;font-size:25px}.m-product strong{display:block;margin-top:5px;font-size:10px;line-height:1.35}.m-product small{display:block;color:#77738f;font-size:9px}.m-product .price{color:#5d43d5;font-size:10px;font-weight:700;margin-top:4px}.add{width:100%;margin-top:5px;border:0;border-radius:8px;background:#17152f;color:white;padding:6px;font:inherit;font-size:10px;font-weight:700;cursor:pointer}.mobile-heading{display:flex;justify-content:space-between;align-items:center;margin:12px 0 7px;font-size:12px;font-weight:700}.mobile-row{display:flex;align-items:center;gap:8px;margin:7px 0;padding:8px;border:1px solid #e9e6f5;border-radius:11px;background:white;font-size:10px}.mobile-row .emoji{font-size:21px}.mobile-row .rowcopy{flex:1;min-width:0}.mobile-row small{display:block;color:#77738f}.qty{display:flex;align-items:center;gap:5px}.qty button{width:23px;height:23px;border:0;border-radius:50%;color:#4a3bb0;background:#eeebff;font-weight:700;cursor:pointer}.total{margin:10px 0;padding:10px;border:1px dashed #c9c1f1;border-radius:11px;background:white;font-size:10px}.total div{display:flex;justify-content:space-between}.total .grand{border-top:1px solid #ece9f8;padding-top:6px;margin-top:6px;font-weight:700;font-size:12px}.wide{width:100%;border:0;border-radius:11px;padding:10px;background:linear-gradient(135deg,#6d4aff,#8a6bff);color:white;font:inherit;font-size:11px;font-weight:700;cursor:pointer}.empty{padding:30px 8px;text-align:center;color:#77738f;font-size:11px}.empty .emoji{display:block;font-size:40px}.phone-nav{display:flex;justify-content:space-around;flex:none;padding:8px 4px calc(9px + env(safe-area-inset-bottom));border-top:1px solid #e7e4f3;background:#fff}.phone-nav button{position:relative;border:0;background:none;color:#83809c;font:inherit;font-size:9px;cursor:pointer}.phone-nav button span{display:block;font-size:16px}.phone-nav button.active{color:#5d43d5;font-weight:700}.count{position:absolute;top:-3px;right:-5px;padding:1px 4px;border-radius:99px;background:#f45b79;color:white;font-size:8px}.toast{position:absolute;z-index:5;bottom:62px;left:50%;transform:translate(-50%,10px);opacity:0;transition:.2s;padding:7px 12px;border-radius:99px;background:#17152f;color:#fff;font-size:10px;white-space:nowrap;pointer-events:none}.toast.show{opacity:1;transform:translate(-50%,0)}
+    section.content{padding:64px 0}.section-head{max-width:760px;margin:0 auto 30px;text-align:center}.kicker{color:var(--a);font-size:.78rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase}.section-head h2{font-size:clamp(2rem,4vw,3.1rem);letter-spacing:-.05em;line-height:1.1;margin:9px 0}.section-head p{color:var(--muted);line-height:1.7}.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:13px}.card{padding:20px;border:1px solid var(--line);border-radius:18px;background:var(--card);box-shadow:0 10px 36px #1b164209}.card .icon{font-size:25px}.card h3{margin:8px 0 5px;font-size:1.05rem}.card p{margin:0;color:var(--muted);font-size:.91rem;line-height:1.65}.catalog{padding:24px;border:1px solid var(--line);border-radius:22px;background:var(--card)}.catalog-tools{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:15px}.catalog-search{flex:1;min-width:210px;min-height:43px;padding:0 13px;border:1px solid var(--line);border-radius:11px;background:var(--bg);color:var(--fg);font:inherit}.filter{padding:9px 12px;border:1px solid var(--line);border-radius:99px;background:transparent;color:var(--fg);font:inherit;font-size:.83rem;cursor:pointer}.filter.active{background:var(--a);color:#fff;border-color:var(--a)}.catalog-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:9px}.catalog-item{display:grid;grid-template-columns:1fr auto;gap:4px 10px;padding:13px;border:1px solid var(--line);border-radius:12px;background:color-mix(in srgb,var(--card) 85%,var(--bg))}.catalog-item strong{font-size:.91rem}.catalog-item span{font-size:.78rem;color:var(--muted)}.catalog-item b{grid-column:2;grid-row:1/span 2;align-self:center;color:var(--a);white-space:nowrap}.footnote{margin:15px 0 0;color:var(--muted);font-size:.85rem}.how{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.step{padding:20px;border:1px solid var(--line);border-radius:18px;background:var(--card)}.step b{color:var(--a)}.step p{color:var(--muted);margin:8px 0 0}.download{padding:38px;border-radius:22px;background:linear-gradient(120deg,#6748e8,#009b86);color:white;display:flex;justify-content:space-between;align-items:center;gap:20px}.download h2{margin:0;font-size:clamp(1.6rem,4vw,2.5rem)}.download p{margin:7px 0 0;color:#eeebff}.download .button{background:white;color:#4432ad;box-shadow:none}.footer{padding:26px 0;color:var(--muted);font-size:.84rem;border-top:1px solid var(--line)}.footer-inner{display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap}.footer a{color:var(--a)}
+    @media(max-width:900px){.hero-grid{grid-template-columns:1fr 1fr;gap:28px}.phone{width:340px;height:680px}.cards{grid-template-columns:repeat(2,1fr)}.catalog-grid{grid-template-columns:repeat(2,1fr)}}
+    @media(max-width:700px){.wrap{width:min(100% - 28px,1160px)}.nav{min-height:62px}.navlinks{display:none}.nav .button{min-height:40px;padding:0 12px;font-size:.82rem}.hero{padding:25px 0 34px}.hero-grid{grid-template-columns:1fr;gap:22px}.hero-copy{text-align:center;margin:auto}.lead{font-size:1rem}.actions,.stats{justify-content:center}.stats{gap:20px}.phone-stage{order:2}.phone{width:min(360px,calc(100vw - 42px));height:min(710px,calc(100svh - 82px));min-height:610px;transform:none}.content section{padding:48px 0}.cards,.how{grid-template-columns:1fr}.catalog{padding:15px}.catalog-grid{grid-template-columns:1fr}.catalog-tools{gap:7px}.catalog .filter{font-size:.76rem;padding:8px 10px}.download{padding:25px;align-items:stretch;flex-direction:column}.download .button{width:100%}}
+    @media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;animation-duration:.01ms!important;transition-duration:.01ms!important}}
+    .product-actions{display:flex;gap:4px;margin-top:5px}.product-actions .add{flex:1;width:auto;margin:0;padding:6px 3px;font-size:9px}.product-actions .save{width:28px;border:1px solid #e5e1f5;border-radius:8px;background:#fff;color:#5d43d5;cursor:pointer}
   </style>
 </head>
 <body>
-  <header class="topbar">
-    <div class="wrap nav">
-      <a class="brand" href="#top" aria-label="FastStore home"><span class="brand-mark">F</span><span>FastStore</span></a>
-      <nav class="navlinks" aria-label="Main navigation">
-        <a href="#features">Features</a><a href="#catalog">Products & prices</a><a href="#demo">Explore demo</a><a href="#how">How it works</a>
-      </nav>
-      <a class="button" href="https://github.com/DevSidh/Ram-Prasad-Kirana-/releases/download/v3.1.4/Ram-Prasad-General-Store-3.1.4.apk">Get the app <span aria-hidden="true">↓</span></a>
-    </div>
-  </header>
+  <div class="glow one"></div><div class="glow two"></div>
+  <header><div class="wrap nav"><a class="brand" href="#top"><i>F</i>FastStore <span style="color:var(--muted);font-weight:400">· Janakpur</span></a><nav class="navlinks" aria-label="Main navigation"><a href="#features">Features</a><a href="#catalog">Products & prices</a><a href="#demo">Phone demo</a></nav><a class="button" href="https://github.com/DevSidh/Ram-Prasad-Kirana-/releases/download/v3.1.4/Ram-Prasad-General-Store-3.1.4.apk">Download app ↓</a></div></header>
   <main id="top">
-    <section class="hero">
-      <div class="wrap hero-grid">
-        <div>
-          <div class="eyebrow"><i></i> RAM PRASAD GENERAL STORE · JANAKPUR</div>
-          <h1>Your everyday store,<br><span>right in your hands.</span></h1>
-          <p class="hero-copy">Meet FastStore, the customer app for browsing everyday groceries, discovering drinks and wholesale offers, applying coupons, and keeping up with your orders.</p>
-          <div class="hero-actions">
-            <a class="button" href="https://github.com/DevSidh/Ram-Prasad-Kirana-/releases/download/v3.1.4/Ram-Prasad-General-Store-3.1.4.apk">Download Android app <span aria-hidden="true">↓</span></a>
-            <a class="button secondary" href="#demo">Explore the app <span aria-hidden="true">↘</span></a>
-          </div>
-          <div class="hero-note">Android APK · Version 3.1.4 · Free download · <a href="https://github.com/DevSidh/Ram-Prasad-Kirana-/releases/latest">See release notes</a></div>
-        </div>
-        <div class="phone-stage" aria-label="Illustration of the FastStore customer app">
-          <div class="phone"><div class="phone-screen">
-            <div class="status"><span>9:41</span><span>●●● ▰</span></div>
-            <div class="app-head"><div>Good morning!<small>What would you like today?</small></div><div class="avatar">☺</div></div>
-            <div class="app-search">⌕ &nbsp;Search products, drinks...</div>
-            <div class="app-promo"><div class="tiny">A LITTLE SOMETHING FOR YOU</div><strong>Save on your next order</strong><span class="tag">DIWALI50 &nbsp;›</span></div>
-            <div class="app-section-title">Browse categories <span>See all</span></div>
-            <div class="app-cats"><div class="app-cat"><b>🥫</b><small>Groceries</small></div><div class="app-cat"><b>🥤</b><small>Drinks</small></div><div class="app-cat"><b>📦</b><small>Wholesale</small></div><div class="app-cat"><b>✨</b><small>Offers</small></div></div>
-            <div class="app-section-title">Popular today <span>View all</span></div>
-            <div class="app-products"><div class="app-product"><div class="product-visual">🥛</div><strong>Daily essentials</strong><small>Shop groceries</small></div><div class="app-product"><div class="product-visual">🥤</div><strong>Cold drinks</strong><small>Explore drinks</small></div></div>
-            <div class="tabbar"><button class="active" type="button">⌂<br>Home</button><button type="button">▦<br>Categories</button><button type="button">🛒<br>Cart</button><button type="button">☺<br>Account</button></div>
-          </div></div>
-        </div>
-      </div>
-    </section>
+    <section class="hero"><div class="wrap hero-grid"><div class="hero-copy"><span class="tag"><i></i> Customer app · Ram Prasad General Store</span><h1>Groceries at your door,<br><span>in a few taps.</span></h1><p class="lead">Browse everyday products, explore the drinks menu, check offers, and keep track of orders from your phone. Made for customers of Ram Prasad General Store in Janakpur, Nepal.</p><div class="actions"><a class="button" href="https://github.com/DevSidh/Ram-Prasad-Kirana-/releases/download/v3.1.4/Ram-Prasad-General-Store-3.1.4.apk">Download FastStore for Android ↓</a><a class="button ghost" href="#demo">Try the phone demo</a></div><p class="subnote">Free Android APK · Version 3.1.4 · <a href="https://github.com/DevSidh/Ram-Prasad-Kirana-/releases/latest">View release notes</a></p><div class="stats"><div><strong>27</strong><span>listed products</span></div><div><strong>7</strong><span>drinks menu items</span></div><div><strong>Rs.</strong><span>Nepalese rupees</span></div></div></div>
+      <div class="phone-stage" id="demo"><div class="phone" id="phone"><div class="screen"><div class="island"></div><div class="status"><span id="clock">9:41</span><span>●●● ▰</span></div><div class="mobile-app" id="mobile-app" aria-live="polite"></div><div class="toast" id="toast" role="status"></div><nav class="phone-nav" aria-label="Demo app navigation"><button data-nav="home"><span>⌂</span>Home</button><button data-nav="browse"><span>▦</span>Browse</button><button data-nav="cart"><span>🛒</span>Cart<b class="count" id="cart-count" hidden>0</b></button><button data-nav="account"><span>☺</span>Account</button></nav></div></div></div>
+    </div></section>
 
-    <section class="section alt" id="demo">
-      <div class="wrap demo-layout">
-        <div class="demo-copy"><div class="section-kicker">Interactive app demo</div><h2>Try a sample shopping journey</h2><p>Explore the customer app preview: browse sample products, add them to a demo cart, try the sample coupon, and preview checkout and account screens.</p>
-          <ul class="demo-points"><li><span class="check">✓</span><span>Browse sample groceries, drinks, and wholesale items.</span></li><li><span class="check">✓</span><span>Change quantities, remove items, and try a demo coupon.</span></li><li><span class="check">✓</span><span>Preview checkout without submitting a real order.</span></li></ul>
-        </div>
-        <div class="demo-card">
-          <div class="demo-controls" role="tablist" aria-label="FastStore app sections">
-            <button role="tab" aria-selected="true" aria-controls="demo-panel" data-demo="home">Home</button>
-            <button role="tab" aria-selected="false" aria-controls="demo-panel" data-demo="shop">Shop</button>
-            <button role="tab" aria-selected="false" aria-controls="demo-panel" data-demo="drinks">Drinks</button>
-            <button role="tab" aria-selected="false" aria-controls="demo-panel" data-demo="wholesale">Wholesale</button>
-            <button role="tab" aria-selected="false" aria-controls="demo-panel" data-demo="offers">Coupons</button>
-            <button role="tab" aria-selected="false" aria-controls="demo-panel" data-demo="cart">Cart</button>
-            <button role="tab" aria-selected="false" aria-controls="demo-panel" data-demo="orders">Orders</button>
-            <button role="tab" aria-selected="false" aria-controls="demo-panel" data-demo="account">Account</button>
-          </div>
-          <div class="demo-app" id="demo-panel" role="tabpanel" aria-live="polite">
-            <div class="demo-toolbar"><span class="demo-brand">FastStore <span style="color:#738076;font-weight:500">· sample store</span></span><button class="demo-cart-button" type="button" data-action="screen" data-screen="cart" aria-label="Open demo cart">Cart <b id="demo-cart-count">0</b></button></div>
-            <div id="demo-view"></div>
-          </div>
-        </div>
-      </div>
-    </section>
+    <section class="content" id="features"><div class="wrap"><div class="section-head"><div class="kicker">Customer app features</div><h2>Everything customers use, in one place</h2><p>This showcase covers the customer side of FastStore. The phone preview is a safe interactive demo using sample checkout and account data; it does not send real orders or collect personal information.</p></div><div class="cards">
+      <article class="card"><span class="icon">🔎</span><h3>Find products</h3><p>Search the store catalogue, browse categories, and check product details, prices, images, stock and discounts.</p></article>
+      <article class="card"><span class="icon">🥤</span><h3>Dedicated drinks menu</h3><p>Browse drinks in a separate menu, including the current soda, energy drink and tea selections.</p></article>
+      <article class="card"><span class="icon">📦</span><h3>Wholesale menu</h3><p>Open a separate wholesale area for case and bulk offers when products and wholesale prices are available.</p></article>
+      <article class="card"><span class="icon">🛒</span><h3>Cart and checkout</h3><p>Add items, adjust quantities, review totals, choose available payment options, and submit an order in the app.</p></article>
+      <article class="card"><span class="icon">🏷️</span><h3>Coupons and promotions</h3><p>Review available coupons and apply eligible offers during checkout. Promotion terms can change.</p></article>
+      <article class="card"><span class="icon">🚚</span><h3>Delivery details</h3><p>Save delivery addresses and view the delivery choices offered for your location at checkout.</p></article>
+      <article class="card"><span class="icon">📍</span><h3>Orders and tracking</h3><p>Review order history, see order details and follow status updates as the store processes an order.</p></article>
+      <article class="card"><span class="icon">🧾</span><h3>Order invoices</h3><p>Access order information and download an invoice when one is available for your order.</p></article>
+      <article class="card"><span class="icon">♡</span><h3>Saved items</h3><p>Keep a personal list of products you may want to find again.</p></article>
+      <article class="card"><span class="icon">🔔</span><h3>Notifications</h3><p>See store announcements, order alerts and account notifications, with notification preferences.</p></article>
+      <article class="card"><span class="icon">🎁</span><h3>Buying streak</h3><p>Check your buying streak and any rewards shown in your customer account.</p></article>
+      <article class="card"><span class="icon">⚙️</span><h3>Account preferences</h3><p>Manage your profile, addresses, language, appearance, help, legal information and account privacy options.</p></article>
+    </div></div></section>
 
-    <section class="section alt" id="catalog">
-      <div class="wrap">
-        <div class="section-head">
-          <div class="section-kicker">Store catalogue · checked 28 Oct 2026</div>
-          <h2>Products and current listed prices</h2>
-          <p>This snapshot is from the customer catalogue. Prices are in Nepalese rupees (Rs.) and can change; confirm the final price in FastStore before checkout. Search the listed products below.</p>
-        </div>
-        <div class="catalog-tools">
-          <label class="catalog-search-label" for="catalog-search">Search the catalogue</label>
-          <input id="catalog-search" class="demo-search" type="search" placeholder="Search product or category…" autocomplete="off">
-          <div class="catalog-filters" role="group" aria-label="Filter catalogue">
-            <button class="catalog-filter active" type="button" data-catalog-filter="all">All products</button>
-            <button class="catalog-filter" type="button" data-catalog-filter="everyday">Everyday store</button>
-            <button class="catalog-filter" type="button" data-catalog-filter="drinks">Drinks menu</button>
-            <button class="catalog-filter" type="button" data-catalog-filter="wholesale">Wholesale</button>
-          </div>
-          <div id="catalog-results" class="catalog-grid" aria-live="polite"></div>
-          <p class="catalog-footnote">Wholesale note: the current customer catalogue does not list any products with wholesale prices. Wholesale sample cases in the interactive demo are examples only, not live offers.</p>
-        </div>
-      </div>
-    </section>
+    <section class="content" id="catalog"><div class="wrap"><div class="section-head"><div class="kicker">Store catalogue · checked 28 Oct 2026</div><h2>Products and listed prices</h2><p>Current customer-catalogue snapshot in Nepalese rupees. Prices and availability can change; confirm the final price in FastStore before ordering.</p></div><div class="catalog"><div class="catalog-tools"><input id="catalog-search" class="catalog-search" type="search" aria-label="Search the product catalogue" placeholder="Search product or category…"><button class="filter active" data-filter="all">All products</button><button class="filter" data-filter="everyday">Everyday store</button><button class="filter" data-filter="drinks">Drinks menu</button><button class="filter" data-filter="wholesale">Wholesale</button></div><div id="catalog-grid" class="catalog-grid" aria-live="polite"></div><p class="footnote">Wholesale note: no products with separate wholesale prices are currently listed in the customer catalogue. The wholesale screen in the phone preview explains this current availability.</p></div></div></section>
 
-    <section class="section" id="features">
-      <div class="wrap">
-        <div class="section-head"><div class="section-kicker">FastStore customer app</div><h2>Your store, from browsing to delivery</h2><p>FastStore is the customer shopping app for Ram Prasad General Store in Janakpur. Explore the customer features below; store staff use a separate billing and management area.</p></div>
-        <div class="features">
-          <article class="feature"><div class="feature-icon">⌕</div><h3>Find products quickly</h3><p>Search and browse the store catalogue to find everyday items without scrolling through everything.</p></article>
-          <article class="feature"><div class="feature-icon">🥤</div><h3>Explore the drinks menu</h3><p>Open the dedicated drinks section and discover featured beverages and other drink options.</p></article>
-          <article class="feature"><div class="feature-icon">📦</div><h3>Browse wholesale offers</h3><p>See wholesale products and their available pricing and purchase details in one place.</p></article>
-          <article class="feature"><div class="feature-icon">🏷️</div><h3>Use available coupons</h3><p>Review eligible offers in the coupon area and apply a coupon to your cart before checkout.</p></article>
-          <article class="feature"><div class="feature-icon">🛒</div><h3>Review your cart</h3><p>Check selected items and quantities, see your order total, and continue to checkout.</p></article>
-          <article class="feature"><div class="feature-icon">🛵</div><h3>Follow your orders</h3><p>View your orders and their latest status, and open order details when you need them.</p></article>
-          <article class="feature"><div class="feature-icon">🔔</div><h3>Stay up to date</h3><p>See account notifications and store updates from inside the app.</p></article>
-          <article class="feature"><div class="feature-icon">🎁</div><h3>Build your shopping streak</h3><p>Keep track of buying-day streak activity and see the rewards available in your account.</p></article>
-          <article class="feature"><div class="feature-icon">🧾</div><h3>Keep order details handy</h3><p>Review order information and download an invoice for a completed order when available.</p></article>
-          <article class="feature"><div class="feature-icon">📍</div><h3>Manage delivery addresses</h3><p>Save and update your addresses for a smoother checkout. Delivery options depend on the store’s service area.</p></article>
-          <article class="feature"><div class="feature-icon">💳</div><h3>Choose checkout payment options</h3><p>Review the payment methods presented at checkout and choose an available option for your order.</p></article>
-          <article class="feature"><div class="feature-icon">🌙</div><h3>Personalize your app</h3><p>Adjust appearance and language preferences in the customer account settings.</p></article>
-          <article class="feature"><div class="feature-icon">⭐</div><h3>Rate purchased products</h3><p>Share feedback and ratings for eligible products after purchase.</p></article>
-          <article class="feature"><div class="feature-icon">🔐</div><h3>Manage your account</h3><p>Register or sign in, update your profile, manage notifications, and access account and privacy options.</p></article>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="how">
-      <div class="wrap">
-        <div class="section-head"><div class="section-kicker">Get started</div><h2>Shop in a few simple steps</h2><p>Download the Android app, sign in or create your account, and you’re ready to explore.</p></div>
-        <div class="steps">
-          <article class="step"><h3>Download FastStore for Android</h3><p>Get the current Android APK from the official GitHub release. Open the downloaded APK on your phone and approve Android’s install prompt if it appears.</p></article>
-          <article class="step"><h3>Browse and add items</h3><p>Search products, explore drinks and wholesale, then add the items you want to your cart.</p></article>
-          <article class="step"><h3>Apply offers and place an order</h3><p>Check coupons, delivery and payment options, then review the order total before submitting your order.</p></article>
-        </div>
-      </div>
-    </section>
-
-    <section class="cta"><div class="wrap cta-inner"><div><div class="section-kicker">Ram Prasad General Store · Janakpur</div><h2>Ready to make your next shop easier?</h2></div><a class="button" href="https://github.com/DevSidh/Ram-Prasad-Kirana-/releases/download/v3.1.4/Ram-Prasad-General-Store-3.1.4.apk">Download FastStore <span aria-hidden="true">↓</span></a></div></section>
+    <section class="content" id="install"><div class="wrap"><div class="section-head"><div class="kicker">Get started</div><h2>Install and start browsing</h2><p>FastStore is currently provided as an Android APK download.</p></div><div class="how"><article class="step"><b>01 · Download</b><p>Use the button below to download the official APK from the GitHub release. The APK is free.</p></article><article class="step"><b>02 · Install</b><p>Open the downloaded file on your Android phone and follow Android’s install prompt. If asked, allow your browser to install this app.</p></article><article class="step"><b>03 · Shop</b><p>Open FastStore, sign in or create an account, browse items, and check delivery and payment options in the app.</p></article></div></div></section>
+    <section class="content"><div class="wrap"><div class="download"><div><h2>Get FastStore on Android</h2><p>Ram Prasad General Store · Janakpur · Version 3.1.4</p></div><a class="button" href="https://github.com/DevSidh/Ram-Prasad-Kirana-/releases/download/v3.1.4/Ram-Prasad-General-Store-3.1.4.apk">Download APK ↓</a></div></div></section>
   </main>
-  <footer class="site-footer"><div class="wrap foot-inner"><span>© <span id="year"></span> Ram Prasad General Store · FastStore</span><a href="https://github.com/DevSidh/Ram-Prasad-Kirana-/releases/latest">View latest app release</a></div></footer>
+  <footer class="footer"><div class="wrap footer-inner"><span>© <span id="year"></span> Ram Prasad General Store · FastStore</span><span><a href="https://github.com/DevSidh/Ram-Prasad-Kirana-/releases/latest">Latest app release</a> · Showcase demo only</span></div></footer>
   <script>
-    const catalogSnapshot = [
-      ['Sattu - 500g','Flour & grains',147,false], ['Colgate Toothpaste - 190g','Oral Care',165,false], ['Chakki Aata','Flour & grains',580,false],
-      ['Bikaji Bhujiya','Snacks & Namkeen',235,false], ['Kuchkuch Dalbut','Snacks & Namkeen',215,false], ['Moong Dal','Dal',210,false],
-      ['Chana Dal','Dal',172,false], ['Pepsi','Drinks',90,true], ['Tokla tea','Drinks',50,true], ['Tokla Tea small sachet','Drinks',10,true],
-      ['Vim Washing soap','Soap',45,false], ['Rajnigandha','Tobacco Products',50,false], ['Horlicks Small Sachet','Drinks',10,true],
-      ['DETOL SKINCARE SOAP','Soap',60,false], ['DETOL S0AP','Soap',71,false], ['LAYS - LARGE','Chips',80,false], ['Lays - small','Chips',50,false],
-      ['Redbull - 250ml','Drinks',115,true], ['Sagar MilkPowder - 500g','Masalas',560,false], ['Sugar','Masalas',120,false],
-      ['Sunflower - 1 litre','Oils',280,false], ['Sprite- 90ml','Drinks',95,true], ['Coca Cola','Drinks',95,true],
-      ['Oreo Biscuit','Biscuits',20,false], ['Chicken Masala','Masalas',20,false], ['Marie Gold Biscuit','Biscuits',20,false], ['Fortune Oil','Oils',250,false]
+    const catalog = [
+      ['Sattu - 500g','Flour & grains',147,false,'🥣'],['Colgate Toothpaste - 190g','Oral Care',165,false,'🪥'],['Chakki Aata','Flour & grains',580,false,'🌾'],
+      ['Bikaji Bhujiya','Snacks & Namkeen',235,false,'🥨'],['Kuchkuch Dalbut','Snacks & Namkeen',215,false,'🥜'],['Moong Dal','Dal',210,false,'🫘'],['Chana Dal','Dal',172,false,'🫘'],
+      ['Pepsi','Drinks',90,true,'🥤'],['Tokla tea','Drinks',50,true,'🍵'],['Tokla Tea small sachet','Drinks',10,true,'🍵'],['Vim Washing soap','Soap',45,false,'🧼'],
+      ['Rajnigandha','Tobacco Products',50,false,'🛍️'],['Horlicks Small Sachet','Drinks',10,true,'🥛'],['DETOL SKINCARE SOAP','Soap',60,false,'🧼'],['DETOL S0AP','Soap',71,false,'🧼'],
+      ['LAYS - LARGE','Chips',80,false,'🍟'],['Lays - small','Chips',50,false,'🍟'],['Redbull - 250ml','Drinks',115,true,'⚡'],['Sagar MilkPowder - 500g','Masalas',560,false,'🥛'],
+      ['Sugar','Masalas',120,false,'🍚'],['Sunflower - 1 litre','Oils',280,false,'🫙'],['Sprite- 90ml','Drinks',95,true,'🥤'],['Coca Cola','Drinks',95,true,'🥤'],
+      ['Oreo Biscuit','Biscuits',20,false,'🍪'],['Chicken Masala','Masalas',20,false,'🌶️'],['Marie Gold Biscuit','Biscuits',20,false,'🍪'],['Fortune Oil','Oils',250,false,'🫙']
     ];
-    let catalogFilter = 'all';
-    function renderCatalog() {
-      const host = document.getElementById('catalog-results');
-      if (!host) return;
-      const query = (document.getElementById('catalog-search')?.value || '').trim().toLowerCase();
-      const visible = catalogSnapshot.filter(([name, category, , drink]) => {
-        const inFilter = catalogFilter === 'all' || (catalogFilter === 'drinks' && drink) || (catalogFilter === 'everyday' && !drink) || catalogFilter === 'wholesale' && false;
-        return inFilter && `${name} ${category}`.toLowerCase().includes(query);
-      });
-      host.replaceChildren();
-      if (catalogFilter === 'wholesale') {
-        const note = document.createElement('div'); note.className = 'catalog-empty';
-        note.textContent = 'No products with wholesale pricing are currently listed in the customer catalogue.'; host.append(note); return;
-      }
-      if (!visible.length) { const empty = document.createElement('div'); empty.className = 'catalog-empty'; empty.textContent = 'No matching products. Try another search.'; host.append(empty); return; }
-      visible.forEach(([name, category, price, drink]) => {
-        const card = document.createElement('article'); card.className = 'catalog-item';
-        const title = document.createElement('strong'); title.textContent = name;
-        const group = document.createElement('span'); group.textContent = drink ? `Drinks menu · ${category}` : category;
-        const amount = document.createElement('b'); amount.textContent = `Rs. ${price.toFixed(2)}`;
-        card.append(title, group, amount); host.append(card);
-      });
-    }
-    document.getElementById('catalog-search')?.addEventListener('input', renderCatalog);
-    document.querySelectorAll('[data-catalog-filter]').forEach(button => button.addEventListener('click', () => {
-      catalogFilter = button.dataset.catalogFilter;
-      document.querySelectorAll('[data-catalog-filter]').forEach(item => item.classList.toggle('active', item === button));
-      renderCatalog();
-    }));
-    renderCatalog();
-
-    const products = [
-      { id: 'milk', name: 'Fresh Milk', category: 'Groceries', price: 110, unit: '1 litre', icon: '🥛' },
-      { id: 'rice', name: 'Everyday Rice', category: 'Groceries', price: 185, unit: '1 kg', icon: '🍚' },
-      { id: 'noodles', name: 'Wai Wai Noodles', category: 'Groceries', price: 25, unit: '1 pack', icon: '🍜' },
-      { id: 'oil', name: 'Cooking Oil', category: 'Groceries', price: 285, unit: '1 litre', icon: '🫙' },
-      { id: 'cola', name: 'Chilled Cola', category: 'Drinks', price: 75, unit: '500 ml', icon: '🥤' },
-      { id: 'energy', name: 'Energy Drink', category: 'Drinks', price: 180, unit: '1 can', icon: '⚡' },
-      { id: 'juice', name: 'Fruit Juice', category: 'Drinks', price: 95, unit: '1 bottle', icon: '🧃' },
-      { id: 'noodles-case', name: 'Noodles Case', category: 'Wholesale', price: 600, unit: 'sample case', icon: '📦' },
-      { id: 'snack-case', name: 'Snack Case', category: 'Wholesale', price: 840, unit: 'sample case', icon: '🍪' },
-      { id: 'water-case', name: 'Water Case', category: 'Wholesale', price: 360, unit: 'sample case', icon: '💧' }
-    ];
-    const demoPanel = document.getElementById('demo-panel');
-    const demoView = document.getElementById('demo-view');
-    const state = { screen: 'home', cart: {}, couponApplied: false, couponMessage: '', search: '' };
-    const element = (tag, className, text) => {
-      const node = document.createElement(tag);
-      if (className) node.className = className;
-      if (text !== undefined) node.textContent = text;
-      return node;
-    };
-    const makeButton = (text, action, extra = {}) => {
-      const node = element('button', extra.className || 'demo-secondary', text);
-      node.type = 'button';
-      node.dataset.action = action;
-      Object.entries(extra).forEach(([key, value]) => {
-        if (key === 'className') return;
-        if (key === 'ariaLabel') node.setAttribute('aria-label', value);
-        else node.dataset[key] = value;
-      });
-      return node;
-    };
-    const formatPrice = (value) => `Rs. ${value.toFixed(2)}`;
-    const cartCount = () => Object.values(state.cart).reduce((sum, quantity) => sum + quantity, 0);
-    const cartSubtotal = () => products.reduce((sum, product) => sum + product.price * (state.cart[product.id] || 0), 0);
-    const couponDiscount = () => state.couponApplied ? Math.min(cartSubtotal(), 50) : 0;
-    function renderNotice() {
-      demoView.append(element('div', 'demo-notice', 'Interactive sample only. Cart, coupon and checkout actions here do not affect the live app or place an order.'));
-    }
-    function renderHeading(kicker, title, description) {
-      demoView.append(element('div', 'section-kicker', kicker), element('h3', '', title), element('p', '', description));
-    }
-    function renderProductCards(items) {
-      const grid = element('div', 'demo-products');
-      if (!items.length) {
-        grid.append(element('div', 'demo-empty', 'No sample products match that search.'));
-        demoView.append(grid);
-        return;
-      }
-      items.forEach((product) => {
-        const card = element('article', 'demo-product');
-        card.append(element('div', 'demo-product-emoji', product.icon));
-        card.append(element('div', 'demo-product-name', product.name));
-        card.append(element('div', 'demo-product-meta', `${product.category} · ${product.unit} · sample price`));
-        const bottom = element('div', 'demo-product-bottom');
-        bottom.append(element('span', 'demo-product-price', formatPrice(product.price)));
-        bottom.append(makeButton(state.cart[product.id] ? `Added (${state.cart[product.id]}) +` : 'Add +', 'add', { className: 'demo-add', sku: product.id }));
-        card.append(bottom);
-        grid.append(card);
-      });
-      demoView.append(grid);
-    }
-    function renderProductScreen(screen) {
-      const category = screen === 'drinks' ? 'Drinks' : screen === 'wholesale' ? 'Wholesale' : '';
-      const titles = { shop: ['SHOP THE CATALOGUE', 'Browse products', 'Search sample products and add items to your demo cart.'], drinks: ['DRINKS MENU', 'Choose a drink', 'Browse a few sample drinks from the customer menu.'], wholesale: ['WHOLESALE', 'Shop by the case', 'Preview sample wholesale listings. Displayed prices are for demonstration.'] };
-      renderHeading(...titles[screen]);
-      const search = element('input', 'demo-search');
-      search.type = 'search';
-      search.placeholder = 'Search sample products';
-      search.setAttribute('aria-label', 'Search sample products');
-      search.value = state.search;
-      search.addEventListener('input', () => {
-        state.search = search.value;
-        render();
-        const refreshed = demoView.querySelector('.demo-search');
-        refreshed.focus();
-        refreshed.setSelectionRange(refreshed.value.length, refreshed.value.length);
-      });
-      demoView.append(search);
-      const query = state.search.trim().toLowerCase();
-      const items = products.filter((product) => (!category || product.category === category) && (!query || `${product.name} ${product.category}`.toLowerCase().includes(query)));
-      renderProductCards(items);
-    }
-    function renderCart() {
-      renderHeading('YOUR CART', 'Review your items', 'Change quantities or remove sample items.');
-      const selected = products.filter((product) => state.cart[product.id]);
-      if (!selected.length) {
-        demoView.append(element('div', 'demo-empty', 'Your demo cart is empty. Add a few sample products to try the cart.'));
-        const row = element('div', 'demo-cta-row');
-        row.append(makeButton('Browse products', 'screen', { screen: 'shop', className: 'demo-primary' }));
-        demoView.append(row);
-        return;
-      }
-      const list = element('div', 'demo-cart-list');
-      selected.forEach((product) => {
-        const row = element('div', 'demo-cart-row');
-        const details = element('div');
-        details.append(element('strong', '', product.name));
-        details.append(element('small', '', `${formatPrice(product.price)} × ${state.cart[product.id]} = ${formatPrice(product.price * state.cart[product.id])}`));
-        const quantity = element('div', 'demo-quantity');
-        quantity.append(makeButton('−', 'decrease', { sku: product.id, ariaLabel: `Remove one ${product.name}` }));
-        quantity.append(element('strong', '', String(state.cart[product.id])));
-        quantity.append(makeButton('+', 'add', { sku: product.id, ariaLabel: `Add one ${product.name}` }));
-        quantity.append(makeButton('×', 'remove', { sku: product.id, ariaLabel: `Remove ${product.name}` }));
-        row.append(details, quantity);
-        list.append(row);
-      });
-      demoView.append(list);
-      renderCouponForm();
-      const subtotal = cartSubtotal();
-      demoView.append(element('div', 'demo-total', `Subtotal  ${formatPrice(subtotal)}`));
-      if (state.couponApplied) demoView.append(element('div', 'demo-total', `DIWALI50 demo saving  − ${formatPrice(couponDiscount())}`));
-      demoView.append(element('div', 'demo-total', `Demo total  ${formatPrice(Math.max(0, subtotal - couponDiscount()))}`));
-      const actions = element('div', 'demo-cta-row');
-      actions.append(makeButton('Preview checkout', 'checkout', { className: 'demo-primary' }));
-      actions.append(makeButton('Keep shopping', 'screen', { screen: 'shop' }));
-      demoView.append(actions);
-    }
-    function renderCouponForm() {
-      const box = element('div', 'demo-coupon-box');
-      box.append(element('strong', '', 'Try a sample coupon'));
-      box.append(element('p', '', 'Enter DIWALI50 to preview a sample Rs. 50 reduction. Actual app offer rules may differ.'));
-      const form = element('form', 'demo-coupon-form');
-      form.dataset.form = 'coupon';
-      const input = element('input');
-      input.name = 'coupon';
-      input.placeholder = 'Coupon code';
-      input.setAttribute('aria-label', 'Demo coupon code');
-      input.value = state.couponApplied ? 'DIWALI50' : '';
-      const submit = element('button', 'demo-primary', state.couponApplied ? 'Applied ✓' : 'Apply');
-      submit.type = 'submit';
-      form.append(input, submit);
-      box.append(form);
-      if (state.couponMessage) box.append(element('p', 'demo-status', state.couponMessage));
-      demoView.append(box);
-    }
-    function renderOffers() {
-      renderHeading('COUPONS & OFFERS', 'Try a demo coupon', 'Use this sample coupon in the demo cart. This does not change live offers in the app.');
-      renderCouponForm();
-      const actions = element('div', 'demo-cta-row');
-      actions.append(makeButton('Open demo cart', 'screen', { screen: 'cart', className: 'demo-primary' }));
-      demoView.append(actions);
-    }
-    function renderOrders() {
-      renderHeading('ORDER HISTORY · SAMPLE', 'Your orders', 'This example illustrates the order history screen. It is not a real customer order.');
-      const card = element('div', 'demo-info-card');
-      card.append(element('strong', '', 'Sample order · FS-DEMO-1042'));
-      card.append(element('p', '', 'Status: Preparing · 2 sample items · Placed today'));
-      card.append(element('small', '', 'Order data is illustrative and is not connected to the store backend.'));
-      demoView.append(card);
-      demoView.append(makeButton('View sample order details', 'order-details', { className: 'demo-primary' }));
-    }
-    function renderAccount() {
-      renderHeading('CUSTOMER ACCOUNT · SAMPLE', 'Your FastStore account', 'A preview of customer account tools. No sign-in or personal details are requested in this website demo.');
-      const cards = [
-        ['👤', 'Demo shopper', 'Sample customer profile'],
-        ['🔔', 'Notifications', 'Store updates and order alerts'],
-        ['🎁', 'Buying streak', 'Sample streak and reward preview'],
-        ['♡', 'Saved items', 'Keep favourite products handy']
-      ];
-      const grid = element('div', 'demo-products');
-      cards.forEach(([icon, title, text]) => {
-        const card = element('div', 'demo-info-card');
-        card.append(element('div', 'demo-product-emoji', icon), element('strong', '', title), element('p', '', text));
-        grid.append(card);
-      });
-      demoView.append(grid);
-    }
-    function renderCheckout() {
-      renderHeading('CHECKOUT · DEMO ONLY', 'Order preview ready', 'This is a sample confirmation. No order was sent to the store and no payment was taken.');
-      const card = element('div', 'demo-info-card');
-      card.append(element('strong', '', `Sample order total: ${formatPrice(Math.max(0, cartSubtotal() - couponDiscount()))}`));
-      card.append(element('p', '', `${cartCount()} sample item${cartCount() === 1 ? '' : 's'} · Payment and delivery are not being processed.`));
-      demoView.append(card);
-      const actions = element('div', 'demo-cta-row');
-      actions.append(makeButton('Back to demo cart', 'screen', { screen: 'cart', className: 'demo-primary' }));
-      actions.append(makeButton('Restart demo', 'reset', {}));
-      demoView.append(actions);
-    }
-    function renderOrderDetails() {
-      renderHeading('SAMPLE ORDER DETAILS', 'Preparing your order', 'This sample status is for demonstration only. Live order progress is available inside FastStore after placing an order.');
-      const steps = element('div', 'demo-info-card');
-      steps.append(element('p', '', '✓ Order received   ·   ● Preparing   ·   ○ Ready for delivery'));
-      demoView.append(steps);
-      demoView.append(makeButton('Back to orders', 'screen', { screen: 'orders', className: 'demo-primary' }));
-    }
-    function render() {
-      document.querySelectorAll('[data-demo]').forEach((tab) => {
-        const active = tab.dataset.demo === state.screen || (['checkout', 'order-details'].includes(state.screen) && tab.dataset.demo === (state.screen === 'checkout' ? 'cart' : 'orders'));
-        tab.setAttribute('aria-selected', String(active));
-        tab.tabIndex = active ? 0 : -1;
-      });
-      const count = document.getElementById('demo-cart-count');
-      if (count) count.textContent = String(cartCount());
-      demoView.replaceChildren();
-      renderNotice();
-      if (state.screen === 'home') {
-        renderHeading('CUSTOMER HOME', 'What would you like today?', 'Browse the sample store, then add products to your demo cart.');
-        const categories = element('div', 'demo-category-row');
-        [['🥫', 'Groceries', 'Everyday items', 'shop'], ['🥤', 'Drinks', 'Browse beverages', 'drinks'], ['📦', 'Wholesale', 'Sample cases', 'wholesale']].forEach(([icon, name, note, screen]) => {
-          const card = makeButton('', 'screen', { className: 'demo-category', screen });
-          card.append(element('span', '', icon), element('strong', '', name), element('small', '', note));
-          categories.append(card);
-        });
-        demoView.append(categories);
-        demoView.append(element('strong', '', 'Popular sample products'));
-        renderProductCards(products.slice(0, 4));
-        const offer = element('div', 'demo-coupon-box');
-        offer.append(element('strong', '', 'Promotion preview · DIWALI50'));
-        offer.append(element('p', '', 'Try the sample coupon in the demo.'));
-        offer.append(makeButton('Explore coupons', 'screen', { screen: 'offers', className: 'demo-primary' }));
-        demoView.append(offer);
-      } else if (['shop', 'drinks', 'wholesale'].includes(state.screen)) renderProductScreen(state.screen);
-      else if (state.screen === 'offers') renderOffers();
-      else if (state.screen === 'cart') renderCart();
-      else if (state.screen === 'checkout') renderCheckout();
-      else if (state.screen === 'orders') renderOrders();
-      else if (state.screen === 'order-details') renderOrderDetails();
-      else if (state.screen === 'account') renderAccount();
-    }
-    demoPanel.addEventListener('click', (event) => {
-      const button = event.target.closest('button[data-action]');
-      if (!button) return;
-      const { action, sku, screen } = button.dataset;
-      if (action === 'screen') { state.screen = screen; state.search = ''; }
-      else if (action === 'add' && sku) state.cart[sku] = (state.cart[sku] || 0) + 1;
-      else if (action === 'decrease' && sku) {
-        state.cart[sku] = Math.max(0, (state.cart[sku] || 0) - 1);
-        if (!state.cart[sku]) delete state.cart[sku];
-      } else if (action === 'remove' && sku) delete state.cart[sku];
-      else if (action === 'checkout') state.screen = 'checkout';
-      else if (action === 'order-details') state.screen = 'order-details';
-      else if (action === 'reset') { state.cart = {}; state.couponApplied = false; state.couponMessage = ''; state.screen = 'home'; }
-      render();
-    });
-    demoPanel.addEventListener('submit', (event) => {
-      const form = event.target.closest('form[data-form="coupon"]');
-      if (!form) return;
-      event.preventDefault();
-      const code = new FormData(form).get('coupon').trim().toUpperCase();
-      state.couponApplied = code === 'DIWALI50';
-      state.couponMessage = state.couponApplied ? 'Coupon applied in this demo: sample Rs. 50 off.' : 'Try DIWALI50 to preview the demo offer.';
-      render();
-    });
-    document.querySelectorAll('[data-demo]').forEach((tab, index, tabs) => {
-      tab.addEventListener('click', () => {
-        state.screen = tab.dataset.demo;
-        state.search = '';
-        render();
-      });
-      tab.addEventListener('keydown', (event) => {
-        if (!['ArrowLeft', 'ArrowRight'].includes(event.key)) return;
-        event.preventDefault();
-        const next = tabs[(index + (event.key === 'ArrowRight' ? 1 : tabs.length - 1)) % tabs.length];
-        next.focus();
-        next.click();
-      });
-    });
-    render();
-    document.getElementById('year').textContent = new Date().getFullYear();
+    const app=document.getElementById('mobile-app');
+    const state={screen:'home',browse:'shop',cart:{},query:'',catalogFilter:'all',catalogQuery:'',coupon:'',couponMessage:'',saved:new Set(),selectedProduct:''};
+    const byId=id=>catalog.find(p=>p[0]===id);
+    const count=()=>Object.values(state.cart).reduce((sum,n)=>sum+n,0);
+    const subtotal=()=>Object.entries(state.cart).reduce((sum,[id,n])=>sum+(byId(id)?.[2]||0)*n,0);
+    const money=n=>`Rs. ${Number(n).toFixed(2)}`;
+    const safe=value=>String(value).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+    function toast(message){const el=document.getElementById('toast');el.textContent=message;el.classList.add('show');clearTimeout(toast.timer);toast.timer=setTimeout(()=>el.classList.remove('show'),1300)}
+    function productCards(list){return `<div class="mobile-grid">${list.map(p=>`<article class="m-product"><div class="emoji">${p[4]}</div><strong>${safe(p[0])}</strong><small>${safe(p[1])} · listed price</small><div class="price">${money(p[2])}</div><div class="product-actions"><button class="add" data-action="add" data-id="${safe(p[0])}">+ Add</button><button class="save" aria-label="Save ${safe(p[0])}" data-action="save" data-id="${safe(p[0])}">${state.saved.has(p[0])?'♥':'♡'}</button><button class="save" aria-label="View ${safe(p[0])}" data-action="details" data-id="${safe(p[0])}">↗</button></div></article>`).join('')}</div>`}
+    function top(title,sub=''){return `<h2>${title}</h2>${sub?`<p class="muted">${sub}</p>`:''}`}
+    function home(){const selected=catalog.filter(p=>!p[3]).slice(0,4);return `${top('Namaste 🙏','What would you like today?')}<input class="mobile-search" id="mobile-search" placeholder="⌕ Search products" value="${safe(state.query)}"><div class="promo"><small>RAM PRASAD GENERAL STORE · JANAKPUR</small><b>Shop your neighbourhood store</b>Browse groceries, drinks and more.</div><div class="chips"><button class="chip" data-action="screen" data-screen="shop">Shop</button><button class="chip" data-action="screen" data-screen="drinks">🥤 Drinks</button><button class="chip" data-action="screen" data-screen="wholesale">📦 Wholesale</button><button class="chip" data-action="screen" data-screen="coupons">🏷️ Coupons</button></div><div class="mobile-heading">Popular items <button class="chip" data-action="screen" data-screen="shop">See all</button></div>${productCards(selected)}<div class="mobile-heading">Your shortcuts</div><div class="chips"><button class="chip" data-action="screen" data-screen="orders">📦 Orders</button><button class="chip" data-action="screen" data-screen="saved">♡ Saved items</button><button class="chip" data-action="screen" data-screen="notifications">🔔 Notifications</button><button class="chip" data-action="screen" data-screen="streak">🎁 Buying streak</button></div>`}
+    function browse(){const filter=state.browse;const list=catalog.filter(p=>(filter==='drinks'?p[3]:filter==='wholesale'?false:!p[3])&&`${p[0]} ${p[1]}`.toLowerCase().includes(state.query.toLowerCase()));const title=filter==='drinks'?'Drinks menu':filter==='wholesale'?'Wholesale':'Shop products';return `${top(title,filter==='wholesale'?'Wholesale products and bulk prices are not currently published in the customer catalogue.':`Browse and search the current ${filter==='drinks'?'drinks menu':'store catalogue'}.`)}<div class="chips"><button class="chip ${filter==='shop'?'active':''}" data-action="browse" data-browse="shop">Everyday</button><button class="chip ${filter==='drinks'?'active':''}" data-action="browse" data-browse="drinks">Drinks</button><button class="chip ${filter==='wholesale'?'active':''}" data-action="browse" data-browse="wholesale">Wholesale</button></div>${filter==='wholesale'?'<div class="empty"><span class="emoji">📦</span>No wholesale-priced items are currently listed.<br>Check back for new offers.</div>':`<input class="mobile-search" id="mobile-search" placeholder="⌕ Search this menu" value="${safe(state.query)}">${list.length?productCards(list):'<div class="empty">No matching products found.</div>'}`}`}
+    function cart(){const entries=Object.entries(state.cart);if(!entries.length)return `${top('My cart')}<div class="empty"><span class="emoji">🛒</span>Your cart is empty.<br>Add a product to begin.</div><button class="wide" data-action="screen" data-screen="shop">Browse products</button>`;const sub=subtotal(),discount=state.coupon==='DIWALI50'?Math.min(50,sub):0;return `${top('My cart',`${count()} item${count()===1?'':'s'} · adjust quantities below`)}${entries.map(([id,n])=>{const p=byId(id);return `<div class="mobile-row"><span class="emoji">${p[4]}</span><div class="rowcopy"><b>${safe(p[0])}</b><small>${money(p[2])} each</small></div><div class="qty"><button aria-label="Remove one" data-action="minus" data-id="${safe(id)}">−</button><b>${n}</b><button aria-label="Add one" data-action="add" data-id="${safe(id)}">+</button></div></div>`}).join('')}<div class="total"><div><span>Subtotal</span><span>${money(sub)}</span></div>${discount?`<div><span>DIWALI50 demo saving</span><span>− ${money(discount)}</span></div>`:''}<div class="grand"><span>Demo total</span><span>${money(sub-discount)}</span></div></div><button class="wide" data-action="screen" data-screen="coupons">Apply a coupon</button><button class="wide" style="margin-top:7px" data-action="screen" data-screen="checkout">Preview checkout · Demo only</button>`}
+    function coupons(){return `${top('Coupons & offers','Promotions shown in the live app may have different eligibility and terms.')}<div class="promo"><small>SAMPLE OFFER</small><b>DIWALI50</b>Demo preview: Rs. 50 off your sample cart, up to its subtotal.</div><label class="muted" for="coupon-code">Try code in this demo</label><input class="mobile-search" id="coupon-code" placeholder="Enter coupon code" value="${safe(state.coupon)}"><button class="wide" style="margin-top:8px" data-action="coupon">Apply sample coupon</button><p class="muted" role="status">${safe(state.couponMessage||'This preview does not check live offer eligibility.')}</p>`}
+    function checkout(){const disc=state.coupon==='DIWALI50'?Math.min(50,subtotal()):0;return `${top('Checkout preview','Demo only · this page does not submit an order or take payment.')}<div class="promo"><small>ORDER SUMMARY</small><b>${count()} sample item${count()===1?'':'s'}</b>Subtotal ${money(subtotal())}<br>Sample coupon ${money(disc)}<br><strong>Demo total ${money(subtotal()-disc)}</strong></div><div class="empty"><span class="emoji">✅</span>Sample checkout preview ready.<br>No customer data was collected.</div><button class="wide" data-action="screen" data-screen="cart">Back to cart</button>`}
+    function orders(){return `${top('My orders','In the real app, sign in to view your order history and tracking updates.')}<div class="mobile-row"><span class="emoji">📦</span><div class="rowcopy"><b>Order history</b><small>Sample preview · no real orders loaded</small></div></div><div class="mobile-row"><span class="emoji">🛵</span><div class="rowcopy"><b>Order tracking</b><small>Follow status updates in the app after ordering</small></div></div><div class="mobile-row"><span class="emoji">🧾</span><div class="rowcopy"><b>Invoices</b><small>Available with eligible completed orders</small></div></div>`}
+    function account(){return `${top('Your account','A sample view of customer account options.')}<button class="mobile-row" style="width:100%;text-align:left" data-action="screen" data-screen="addresses"><span class="emoji">📍</span><div class="rowcopy"><b>Profile & addresses</b><small>Manage contact and delivery details</small></div><span>›</span></button>${[['♡','Saved items','saved'],['💳','Payments','payments'],['🔔','Notifications','notifications'],['🎁','Buying streak','streak'],['🌙','Appearance & language','preferences'],['❔','Help & privacy','help']].map(([icon,label,target])=>`<button class="mobile-row" style="width:100%;text-align:left" data-action="screen" data-screen="${target}"><span class="emoji">${icon}</span><div class="rowcopy"><b>${label}</b><small>Open ${label.toLowerCase()} options</small></div><span>›</span></button>`).join('')}`}
+    function detail(screen){if(screen==='saved'){const items=catalog.filter(p=>state.saved.has(p[0]));return `${top('Saved items','Products you marked to revisit.')} ${items.length?productCards(items):'<div class="empty"><span class="emoji">♡</span>No saved products yet.<br>Tap the heart on a product card.</div>'}`};if(screen==='product'){const p=byId(state.selectedProduct);return p?`${top(safe(p[0]),'Product details preview')}<div class="promo"><b>${p[4]} ${safe(p[0])}</b>${safe(p[1])}<br>Current listed price: ${money(p[2])}<br>Ratings and full details appear in the app when available.</div><button class="wide" data-action="add" data-id="${safe(p[0])}">Add to cart · ${money(p[2])}</button><button class="wide" style="margin-top:7px" data-action="screen" data-screen="shop">Back to shop</button>`:'<div class="empty">Product unavailable.</div>'};if(screen==='addresses')return `${top('Delivery addresses','Manage saved delivery locations in your signed-in account.')}<div class="empty"><span class="emoji">📍</span>Address book preview<br>No personal address is stored in this demo.</div>`;if(screen==='payments')return `${top('Payment options','The real checkout shows payment methods available for your order.')}<div class="mobile-row">💳 &nbsp; Review available payment methods at checkout</div>`;if(screen==='notifications')return `${top('Notifications','Store updates and order alerts appear here in the signed-in app.')}<div class="empty"><span class="emoji">🔔</span>Sample notification centre</div><button class="wide" data-action="screen" data-screen="preferences">Notification preferences</button>`;if(screen==='streak')return `${top('Buying streak','See your eligible shopping days and rewards in your account.')}<div class="promo"><b>🎁 Your streak</b>Sign in to see your current streak and available rewards.</div>`;if(screen==='preferences')return `${top('Preferences','Personalize the customer app.')}<button class="wide" data-action="theme">Toggle this website’s theme</button><button class="wide" style="margin-top:7px" data-action="screen" data-screen="notifications">Notification preferences</button><p class="muted">The app also includes language preferences.</p>`;return `${top('Help & privacy','Account support and legal options are available in the app.')}<div class="mobile-row">Help and store contact options</div><div class="mobile-row">Privacy, legal and account controls</div>`}
+    function render(){app.innerHTML=state.screen==='home'?home():['shop','drinks','wholesale'].includes(state.screen)?browse():state.screen==='cart'?cart():state.screen==='coupons'?coupons():state.screen==='checkout'?checkout():state.screen==='orders'?orders():state.screen==='account'?account():detail(state.screen);document.querySelectorAll('[data-nav]').forEach(el=>el.classList.toggle('active',(el.dataset.nav==='browse'&&['shop','drinks','wholesale'].includes(state.screen))||el.dataset.nav===state.screen));const badge=document.getElementById('cart-count');badge.textContent=count();badge.hidden=count()===0;}
+    function renderCatalog(){const host=document.getElementById('catalog-grid'),q=state.catalogQuery.toLowerCase();if(state.catalogFilter==='wholesale'){host.innerHTML='<div class="empty" style="grid-column:1/-1">No products with wholesale pricing are currently listed.</div>';return}const visible=catalog.filter(p=>(state.catalogFilter==='all'||(state.catalogFilter==='drinks'?p[3]:!p[3]))&&`${p[0]} ${p[1]}`.toLowerCase().includes(q));host.replaceChildren();visible.forEach(p=>{const card=document.createElement('article');card.className='catalog-item';const name=document.createElement('strong');name.textContent=p[0];const cat=document.createElement('span');cat.textContent=p[3]?'Drinks menu · Drinks':p[1];const price=document.createElement('b');price.textContent=money(p[2]);card.append(name,cat,price);host.append(card)});if(!visible.length)host.innerHTML='<div class="empty" style="grid-column:1/-1">No matching products.</div>'}
+    document.addEventListener('click',event=>{const button=event.target.closest('[data-action],[data-nav],[data-filter]');if(!button)return;if(button.dataset.nav){const target=button.dataset.nav;if(target==='browse'){state.screen='shop';state.browse='shop'}else state.screen=target;state.query='';render();return}if(button.dataset.filter){state.catalogFilter=button.dataset.filter;document.querySelectorAll('[data-filter]').forEach(b=>b.classList.toggle('active',b===button));renderCatalog();return}const action=button.dataset.action,id=button.dataset.id;if(action==='screen'){state.screen=button.dataset.screen;render()}else if(action==='browse'){state.browse=button.dataset.browse;state.screen=state.browse;state.query='';render()}else if(action==='add'){state.cart[id]=(state.cart[id]||0)+1;render();toast('Added to sample cart')}else if(action==='minus'){state.cart[id]=Math.max(0,(state.cart[id]||0)-1);if(!state.cart[id])delete state.cart[id];render()}else if(action==='coupon'){const value=document.getElementById('coupon-code')?.value.trim().toUpperCase();state.coupon=value==='DIWALI50'?value:'';state.couponMessage=state.coupon?'Sample coupon applied: Rs. 50 off.':'Try DIWALI50 for the demo offer.';render()}else if(action==='theme'){const root=document.documentElement;root.dataset.theme=root.dataset.theme==='dark'?'light':'dark'}else if(action==='save'){state.saved.add(id);render();toast('Saved for later')}else if(action==='details'){state.selectedProduct=id;state.screen='product';render()}});
+    document.addEventListener('input',event=>{if(event.target.id==='mobile-search'){state.query=event.target.value;render();const input=document.getElementById('mobile-search');input?.focus();input?.setSelectionRange(state.query.length,state.query.length)}if(event.target.id==='catalog-search'){state.catalogQuery=event.target.value;renderCatalog()}});
+    document.addEventListener('keydown',event=>{if(event.key==='Escape'&&state.screen!=='home'){state.screen='home';render()}});
+    document.querySelector('.phone-stage').addEventListener('mousemove',event=>{if(matchMedia('(pointer:coarse)').matches)return;const r=event.currentTarget.getBoundingClientRect(),x=(event.clientX-r.left)/r.width-.5,y=(event.clientY-r.top)/r.height-.5;document.getElementById('phone').style.transform=`rotateY(${x*12}deg) rotateX(${-y*8}deg)`});document.querySelector('.phone-stage').addEventListener('mouseleave',()=>document.getElementById('phone').style.transform='');
+    document.getElementById('clock').textContent=new Intl.DateTimeFormat('en',{hour:'numeric',minute:'2-digit'}).format(new Date());document.getElementById('year').textContent=new Date().getFullYear();render();renderCatalog();
   </script>
 </body>
 </html>
