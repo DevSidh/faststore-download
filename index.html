@@ -22,12 +22,6 @@
     }
     * { box-sizing: border-box; }
     body { margin: 0; background: var(--green); color: var(--ink); }
-    main { display: flex; flex-direction: column; }
-    .hero { order: 1; }
-    #demo { order: 2; }
-    #features { order: 3; }
-    #how { order: 4; }
-    .cta { order: 5; }
     a { color: inherit; }
     .wrap { width: min(1160px, calc(100% - 40px)); margin: auto; }
     .topbar { position: sticky; top: 0; z-index: 5; border-bottom: 1px solid var(--line); background: #10251fea; backdrop-filter: blur(14px); }
@@ -212,6 +206,7 @@
   </main>
   <footer class="site-footer"><div class="wrap foot-inner"><span>© <span id="year"></span> Ram Prasad General Store · FastStore</span><a href="https://github.com/DevSidh/Ram-Prasad-Kirana-/releases/latest">View latest app release</a></div></footer>
   <script>
+    document.querySelector('#features').before(document.querySelector('#demo'));
     const previews = {
       home: { label: 'CUSTOMER HOME', title: 'Start with what you need', text: 'Search the catalogue, browse categories, discover featured products, and open current store announcements from the home experience.', chips: ['🔎 Product search', '🥫 Groceries', '🥤 Drinks', '📦 Wholesale'] },
       shop: { label: 'SHOP & CATALOGUE', title: 'Browse the store your way', text: 'Explore everyday products, open the drinks menu, or browse wholesale listings. Search helps you get to a product faster.', chips: ['Groceries', 'Drinks menu', 'Wholesale', 'Product details'] },
