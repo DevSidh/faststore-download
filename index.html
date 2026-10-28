@@ -3,33 +3,220 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#102c25">
-  <meta name="description" content="Get the official Ram Prasad General Store FastStore app for Android.">
-  <title>FastStore — Ram Prasad General Store</title>
+  <meta name="theme-color" content="#10251f">
+  <meta name="description" content="Explore the FastStore customer app for Ram Prasad General Store: browse groceries, shop drinks and wholesale, use coupons, and follow your orders.">
+  <title>FastStore — Your store, in your hands</title>
   <style>
-    :root { color-scheme: dark; font-family: system-ui, -apple-system, "Segoe UI", sans-serif; }
+    :root {
+      color-scheme: dark;
+      --ink: #f6f6ef;
+      --muted: #b7c2b8;
+      --green: #10251f;
+      --green-2: #17392e;
+      --green-3: #214b3c;
+      --gold: #f4ca55;
+      --mint: #9fdbb2;
+      --line: #ffffff1c;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+      scroll-behavior: smooth;
+    }
     * { box-sizing: border-box; }
-    body { min-height: 100vh; margin: 0; display: grid; place-items: center; padding: 24px; color: #f5f7f5; background: radial-gradient(ellipse at 50% 0%, #1b493d 0, #102c25 48%, #0b1714 100%); }
-    main { width: min(100%, 560px); padding: clamp(28px, 7vw, 56px); text-align: center; border: 1px solid #ffffff20; border-radius: 28px; background: #ffffff0b; box-shadow: 0 24px 80px #0006; }
-    .mark { width: 76px; height: 76px; margin: 0 auto 24px; display: grid; place-items: center; border-radius: 22px; color: #102c25; background: #f3c84b; font-size: 38px; font-weight: 800; }
-    h1 { margin: 0; font-size: clamp(2rem, 7vw, 3.1rem); letter-spacing: -.04em; }
-    p { margin: 14px 0 28px; color: #d0ddd8; line-height: 1.65; }
-    .download { display: inline-flex; min-height: 54px; align-items: center; justify-content: center; gap: 10px; padding: 0 24px; border-radius: 14px; color: #10251f; background: #f3c84b; font-weight: 750; text-decoration: none; transition: transform .15s ease, background .15s ease; }
-    .download:hover { transform: translateY(-2px); background: #ffda65; }
-    small { display: block; margin-top: 18px; color: #aebeb8; }
-    footer { margin-top: 34px; color: #aebeb8; font-size: .85rem; }
+    body { margin: 0; background: var(--green); color: var(--ink); }
+    a { color: inherit; }
+    .wrap { width: min(1160px, calc(100% - 40px)); margin: auto; }
+    .topbar { position: sticky; top: 0; z-index: 5; border-bottom: 1px solid var(--line); background: #10251fea; backdrop-filter: blur(14px); }
+    .nav { min-height: 76px; display: flex; align-items: center; justify-content: space-between; gap: 22px; }
+    .brand { display: flex; align-items: center; gap: 11px; text-decoration: none; font-weight: 800; letter-spacing: -.03em; }
+    .brand-mark { width: 39px; height: 39px; display: grid; place-items: center; border-radius: 13px; background: var(--gold); color: var(--green); font-size: 20px; }
+    .navlinks { display: flex; align-items: center; gap: 26px; }
+    .navlinks a { color: var(--muted); text-decoration: none; font-size: .92rem; }
+    .navlinks a:hover { color: var(--ink); }
+    .button { display: inline-flex; align-items: center; justify-content: center; gap: 9px; min-height: 48px; padding: 0 19px; border: 0; border-radius: 14px; background: var(--gold); color: #17231c; text-decoration: none; font-weight: 800; box-shadow: 0 9px 24px #f4ca5520; transition: transform .18s ease, filter .18s ease; }
+    .button:hover { transform: translateY(-2px); filter: brightness(1.07); }
+    .button.secondary { border: 1px solid var(--line); background: #ffffff0c; color: var(--ink); box-shadow: none; }
+    .hero { position: relative; overflow: hidden; padding: 92px 0 86px; background: radial-gradient(ellipse at 83% 37%, #346348 0, transparent 32%), linear-gradient(130deg, #10251f 10%, #17392e 100%); }
+    .hero:after { content: ""; position: absolute; width: 420px; height: 420px; right: -115px; bottom: -260px; border: 1px solid #ffffff18; border-radius: 50%; box-shadow: 0 0 0 38px #ffffff08, 0 0 0 78px #ffffff06; }
+    .hero-grid { position: relative; z-index: 1; display: grid; grid-template-columns: 1.05fr .95fr; align-items: center; gap: 64px; }
+    .eyebrow { display: inline-flex; align-items: center; gap: 8px; padding: 8px 12px; border: 1px solid #ffffff20; border-radius: 99px; color: var(--mint); background: #ffffff08; font-size: .82rem; font-weight: 700; }
+    .eyebrow i { width: 7px; height: 7px; border-radius: 50%; background: var(--gold); box-shadow: 0 0 12px var(--gold); }
+    h1 { max-width: 680px; margin: 22px 0 18px; font-size: clamp(2.8rem, 6vw, 5rem); line-height: .99; letter-spacing: -.065em; }
+    h1 span { color: var(--gold); }
+    .hero-copy { max-width: 550px; margin: 0 0 28px; color: #d1dcd3; font-size: 1.08rem; line-height: 1.75; }
+    .hero-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; }
+    .hero-note { margin-top: 17px; color: #aebdb2; font-size: .82rem; }
+    .phone-stage { display: flex; justify-content: center; perspective: 1000px; }
+    .phone { width: min(330px, 100%); padding: 10px; border: 1px solid #ffffff38; border-radius: 38px; background: #07110e; box-shadow: 0 34px 90px #0007, inset 0 0 0 2px #ffffff0a; transform: rotateY(-7deg) rotateX(2deg); }
+    .phone-screen { min-height: 490px; overflow: hidden; border-radius: 29px; background: #f3f4ed; color: #17231c; }
+    .status { display: flex; justify-content: space-between; padding: 13px 17px 8px; font-size: .66rem; font-weight: 800; }
+    .app-head { display: flex; justify-content: space-between; align-items: center; padding: 8px 16px 14px; font-weight: 850; }
+    .app-head small { display: block; margin-top: 3px; color: #6b786f; font-size: .64rem; font-weight: 500; }
+    .avatar { display: grid; width: 33px; height: 33px; place-items: center; border-radius: 50%; color: #18382b; background: #dbe9dc; }
+    .app-search { margin: 0 14px 12px; padding: 10px 12px; border: 1px solid #e0e4dc; border-radius: 11px; color: #829086; background: white; font-size: .72rem; }
+    .app-promo { margin: 0 14px 14px; padding: 17px; border-radius: 16px; color: white; background: linear-gradient(120deg, #255441, #578351); }
+    .app-promo .tiny { color: #d7e8c9; font-size: .6rem; }
+    .app-promo strong { display: block; max-width: 180px; margin-top: 5px; font-size: 1.1rem; line-height: 1.1; }
+    .app-promo .tag { display: inline-block; margin-top: 12px; padding: 6px 9px; border-radius: 7px; color: #17392e; background: var(--gold); font-size: .62rem; font-weight: 900; }
+    .app-section-title { display: flex; justify-content: space-between; margin: 15px 15px 9px; font-size: .76rem; font-weight: 850; }
+    .app-section-title span { color: #578351; font-size: .62rem; }
+    .app-cats { display: grid; grid-template-columns: repeat(4,1fr); gap: 8px; padding: 0 14px; }
+    .app-cat { padding: 10px 4px; border: 1px solid #e5e8e0; border-radius: 12px; background: white; text-align: center; }
+    .app-cat b { display: block; font-size: 1.15rem; }
+    .app-cat small { display: block; margin-top: 4px; color: #68756b; font-size: .55rem; }
+    .app-products { display: flex; gap: 9px; padding: 0 14px; }
+    .app-product { flex: 1; padding: 9px; border: 1px solid #e5e8e0; border-radius: 12px; background: white; }
+    .product-visual { height: 58px; display: grid; place-items: center; margin-bottom: 7px; border-radius: 8px; background: #f4f2e9; font-size: 1.8rem; }
+    .app-product strong { display: block; font-size: .62rem; }
+    .app-product small { color: #6e7c70; font-size: .56rem; }
+    .tabbar { display: flex; justify-content: space-around; margin-top: 13px; padding: 11px 4px 12px; border-top: 1px solid #e5e8e0; background: white; }
+    .tabbar button { border: 0; background: transparent; color: #79857a; font-size: .58rem; cursor: pointer; }
+    .tabbar button.active { color: #1a6547; font-weight: 900; }
+    .section { padding: 88px 0; }
+    .section.alt { background: #0c1e19; }
+    .section-head { max-width: 710px; margin: 0 auto 42px; text-align: center; }
+    .section-kicker { color: var(--mint); font-size: .78rem; font-weight: 850; letter-spacing: .12em; text-transform: uppercase; }
+    h2 { margin: 12px 0; font-size: clamp(2rem, 4.5vw, 3.25rem); line-height: 1.08; letter-spacing: -.05em; }
+    .section-head p { margin: 0; color: var(--muted); line-height: 1.7; }
+    .features { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; }
+    .feature { min-height: 210px; padding: 24px; border: 1px solid var(--line); border-radius: 20px; background: linear-gradient(140deg, #ffffff0c, #ffffff04); }
+    .feature-icon { width: 45px; height: 45px; display: grid; place-items: center; border-radius: 14px; background: #f4ca551a; font-size: 1.35rem; }
+    .feature h3 { margin: 18px 0 9px; font-size: 1.08rem; }
+    .feature p { margin: 0; color: var(--muted); font-size: .93rem; line-height: 1.65; }
+    .demo-layout { display: grid; grid-template-columns: .82fr 1.18fr; align-items: center; gap: 52px; }
+    .demo-copy h2 { margin-top: 13px; }
+    .demo-copy p { color: var(--muted); line-height: 1.75; }
+    .demo-points { display: grid; gap: 12px; margin: 24px 0 0; padding: 0; list-style: none; }
+    .demo-points li { display: flex; align-items: flex-start; gap: 10px; color: #dbe4dc; line-height: 1.5; }
+    .check { flex: 0 0 auto; display: grid; width: 22px; height: 22px; place-items: center; border-radius: 50%; color: var(--green); background: var(--mint); font-size: .74rem; font-weight: 900; }
+    .demo-card { overflow: hidden; border: 1px solid var(--line); border-radius: 24px; background: #17352b; box-shadow: 0 28px 70px #0003; }
+    .demo-controls { display: flex; gap: 8px; overflow-x: auto; padding: 15px; border-bottom: 1px solid var(--line); }
+    .demo-controls button { flex: 0 0 auto; padding: 10px 14px; border: 1px solid #ffffff20; border-radius: 99px; color: #d9e3da; background: transparent; cursor: pointer; }
+    .demo-controls button[aria-selected="true"] { border-color: var(--gold); color: #1b2d22; background: var(--gold); font-weight: 800; }
+    .demo-content { min-height: 280px; padding: 30px; }
+    .demo-content h3 { margin: 0 0 12px; font-size: 1.55rem; }
+    .demo-content p { max-width: 620px; color: #c1d0c4; line-height: 1.7; }
+    .demo-tiles { display: flex; flex-wrap: wrap; gap: 9px; margin-top: 19px; }
+    .demo-tiles span { padding: 9px 12px; border: 1px solid #ffffff1e; border-radius: 11px; background: #ffffff09; font-size: .84rem; }
+    .steps { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; counter-reset: step; }
+    .step { padding: 24px; border: 1px solid var(--line); border-radius: 20px; background: #ffffff08; }
+    .step:before { counter-increment: step; content: "0" counter(step); display: block; margin-bottom: 18px; color: var(--gold); font-size: .85rem; font-weight: 900; }
+    .step h3 { margin: 0 0 8px; }
+    .step p { margin: 0; color: var(--muted); line-height: 1.65; }
+    .cta { padding: 70px 0; background: linear-gradient(120deg, #204d3c, #17392e); }
+    .cta-inner { display: flex; align-items: center; justify-content: space-between; gap: 28px; }
+    .cta h2 { max-width: 650px; margin: 0; }
+    footer.site-footer { padding: 27px 0; color: #9faea3; background: #091711; font-size: .86rem; }
+    .foot-inner { display: flex; align-items: center; justify-content: space-between; gap: 20px; }
+    .foot-inner a { color: var(--gold); text-decoration: none; }
+    @media (max-width: 850px) { .hero-grid,.demo-layout { grid-template-columns: 1fr; gap: 45px; } .hero { padding-top: 66px; } .hero-copy { max-width: 700px; } .phone-stage { order: 2; } .phone { transform: none; } .features { grid-template-columns: repeat(2,1fr); } .demo-layout { gap: 30px; } }
+    @media (max-width: 600px) { .wrap { width: min(100% - 28px, 1160px); } .nav { min-height: 66px; } .navlinks { display: none; } .nav .button { min-height: 42px; padding: 0 13px; font-size: .84rem; } .hero { padding: 55px 0 60px; } h1 { font-size: clamp(2.7rem, 14vw, 4rem); } .hero-copy { font-size: 1rem; } .phone { max-width: 305px; } .phone-screen { min-height: 465px; } .section { padding: 66px 0; } .features,.steps { grid-template-columns: 1fr; } .feature { min-height: 0; } .demo-content { min-height: 300px; padding: 23px; } .cta-inner,.foot-inner { align-items: flex-start; flex-direction: column; } .cta-inner .button { width: 100%; } }
+    @media (prefers-reduced-motion: reduce) { *,*::before,*::after { scroll-behavior: auto !important; transition-duration: .01ms !important; } }
   </style>
 </head>
 <body>
-  <main>
-    <div class="mark" aria-hidden="true">F</div>
-    <h1>FastStore</h1>
-    <p>Shop with Ram Prasad General Store using our official Android app.</p>
-    <a class="download" href="https://github.com/DevSidh/Ram-Prasad-Kirana-/releases/download/v3.1.4/Ram-Prasad-General-Store-3.1.4.apk" download>
-      <span aria-hidden="true">↓</span> Download for Android
-    </a>
-    <small>Android may ask you to allow installation from your browser. Only install updates from this official page.</small>
-    <footer>Ram Prasad General Store · Janakpur, Nepal</footer>
+  <header class="topbar">
+    <div class="wrap nav">
+      <a class="brand" href="#top" aria-label="FastStore home"><span class="brand-mark">F</span><span>FastStore</span></a>
+      <nav class="navlinks" aria-label="Main navigation">
+        <a href="#features">Features</a><a href="#demo">Explore demo</a><a href="#how">How it works</a>
+      </nav>
+      <a class="button" href="https://github.com/DevSidh/Ram-Prasad-Kirana-/releases/download/v3.1.4/Ram-Prasad-General-Store-3.1.4.apk">Get the app <span aria-hidden="true">↓</span></a>
+    </div>
+  </header>
+  <main id="top">
+    <section class="hero">
+      <div class="wrap hero-grid">
+        <div>
+          <div class="eyebrow"><i></i> RAM PRASAD GENERAL STORE · JANAKPUR</div>
+          <h1>Your everyday store,<br><span>right in your hands.</span></h1>
+          <p class="hero-copy">Meet FastStore, the customer app for browsing everyday groceries, discovering drinks and wholesale offers, applying coupons, and keeping up with your orders.</p>
+          <div class="hero-actions">
+            <a class="button" href="https://github.com/DevSidh/Ram-Prasad-Kirana-/releases/download/v3.1.4/Ram-Prasad-General-Store-3.1.4.apk">Download Android app <span aria-hidden="true">↓</span></a>
+            <a class="button secondary" href="#demo">Explore the app <span aria-hidden="true">↘</span></a>
+          </div>
+          <div class="hero-note">Android app · Official release · Free to download</div>
+        </div>
+        <div class="phone-stage" aria-label="Illustration of the FastStore customer app">
+          <div class="phone"><div class="phone-screen">
+            <div class="status"><span>9:41</span><span>●●● ▰</span></div>
+            <div class="app-head"><div>Good morning!<small>What would you like today?</small></div><div class="avatar">☺</div></div>
+            <div class="app-search">⌕ &nbsp;Search products, drinks...</div>
+            <div class="app-promo"><div class="tiny">A LITTLE SOMETHING FOR YOU</div><strong>Save on your next order</strong><span class="tag">DIWALI50 &nbsp;›</span></div>
+            <div class="app-section-title">Browse categories <span>See all</span></div>
+            <div class="app-cats"><div class="app-cat"><b>🥫</b><small>Groceries</small></div><div class="app-cat"><b>🥤</b><small>Drinks</small></div><div class="app-cat"><b>📦</b><small>Wholesale</small></div><div class="app-cat"><b>✨</b><small>Offers</small></div></div>
+            <div class="app-section-title">Popular today <span>View all</span></div>
+            <div class="app-products"><div class="app-product"><div class="product-visual">🥛</div><strong>Daily essentials</strong><small>Shop groceries</small></div><div class="app-product"><div class="product-visual">🥤</div><strong>Cold drinks</strong><small>Explore drinks</small></div></div>
+            <div class="tabbar"><button class="active" type="button">⌂<br>Home</button><button type="button">▦<br>Categories</button><button type="button">🛒<br>Cart</button><button type="button">☺<br>Account</button></div>
+          </div></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="features">
+      <div class="wrap">
+        <div class="section-head"><div class="section-kicker">Made for everyday shopping</div><h2>Everything you need to shop with ease</h2><p>A quick tour of the customer side of FastStore—from finding your favourites to checking in on an order.</p></div>
+        <div class="features">
+          <article class="feature"><div class="feature-icon">⌕</div><h3>Find products quickly</h3><p>Search and browse the store catalogue to find everyday items without scrolling through everything.</p></article>
+          <article class="feature"><div class="feature-icon">🥤</div><h3>Explore the drinks menu</h3><p>Open the dedicated drinks section and discover featured beverages and other drink options.</p></article>
+          <article class="feature"><div class="feature-icon">📦</div><h3>Browse wholesale offers</h3><p>See wholesale products and their available pricing and purchase details in one place.</p></article>
+          <article class="feature"><div class="feature-icon">🏷️</div><h3>Use available coupons</h3><p>Review eligible offers in the coupon area and apply a coupon to your cart before checkout.</p></article>
+          <article class="feature"><div class="feature-icon">🛒</div><h3>Review your cart</h3><p>Check selected items and quantities, see your order total, and continue to checkout.</p></article>
+          <article class="feature"><div class="feature-icon">🛵</div><h3>Follow your orders</h3><p>View your orders and their latest status, and open order details when you need them.</p></article>
+          <article class="feature"><div class="feature-icon">🔔</div><h3>Stay up to date</h3><p>See account notifications and store updates from inside the app.</p></article>
+          <article class="feature"><div class="feature-icon">🎁</div><h3>Build your shopping streak</h3><p>Keep track of buying-day streak activity and see the rewards available in your account.</p></article>
+          <article class="feature"><div class="feature-icon">🧾</div><h3>Keep order details handy</h3><p>Review order information and download an invoice for a completed order when available.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section alt" id="demo">
+      <div class="wrap demo-layout">
+        <div class="demo-copy"><div class="section-kicker">Try the interactive tour</div><h2>Take a look around FastStore</h2><p>Tap a section to see what customers can do there. This is a website preview of the customer experience; install the app for the live store and account features.</p>
+          <ul class="demo-points"><li><span class="check">✓</span><span>Browse the customer app, not store administration tools.</span></li><li><span class="check">✓</span><span>Explore shopping, coupons, account and order areas.</span></li><li><span class="check">✓</span><span>Download the Android app when you’re ready to shop.</span></li></ul>
+        </div>
+        <div class="demo-card">
+          <div class="demo-controls" role="tablist" aria-label="FastStore app sections">
+            <button role="tab" aria-selected="true" aria-controls="demo-panel" data-demo="home">Home</button>
+            <button role="tab" aria-selected="false" aria-controls="demo-panel" data-demo="shop">Shop</button>
+            <button role="tab" aria-selected="false" aria-controls="demo-panel" data-demo="offers">Coupons</button>
+            <button role="tab" aria-selected="false" aria-controls="demo-panel" data-demo="orders">Orders</button>
+            <button role="tab" aria-selected="false" aria-controls="demo-panel" data-demo="account">Account</button>
+          </div>
+          <div class="demo-content" id="demo-panel" role="tabpanel" aria-live="polite">
+            <div class="section-kicker">CUSTOMER HOME</div><h3>Start with what you need</h3><p>Search the catalogue, browse categories, discover featured products, and open current store announcements from the home experience.</p><div class="demo-tiles"><span>🔎 Product search</span><span>🥫 Groceries</span><span>🥤 Drinks</span><span>📦 Wholesale</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="how">
+      <div class="wrap">
+        <div class="section-head"><div class="section-kicker">Get started</div><h2>Shop in a few simple steps</h2><p>Download the Android app, sign in or create your account, and you’re ready to explore.</p></div>
+        <div class="steps">
+          <article class="step"><h3>Install FastStore</h3><p>Download the official APK. Android may ask you to allow installation from your browser for this direct download.</p></article>
+          <article class="step"><h3>Browse and add items</h3><p>Search products, explore drinks and wholesale, then add the items you want to your cart.</p></article>
+          <article class="step"><h3>Apply offers and checkout</h3><p>Check available coupons, review your cart, and place your order through the app.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta"><div class="wrap cta-inner"><div><div class="section-kicker">Ram Prasad General Store · Janakpur</div><h2>Ready to make your next shop easier?</h2></div><a class="button" href="https://github.com/DevSidh/Ram-Prasad-Kirana-/releases/download/v3.1.4/Ram-Prasad-General-Store-3.1.4.apk">Download FastStore <span aria-hidden="true">↓</span></a></div></section>
   </main>
+  <footer class="site-footer"><div class="wrap foot-inner"><span>© <span id="year"></span> Ram Prasad General Store · FastStore</span><a href="https://github.com/DevSidh/Ram-Prasad-Kirana-/releases/latest">View latest app release</a></div></footer>
+  <script>
+    const previews = {
+      home: { label: 'CUSTOMER HOME', title: 'Start with what you need', text: 'Search the catalogue, browse categories, discover featured products, and open current store announcements from the home experience.', chips: ['🔎 Product search', '🥫 Groceries', '🥤 Drinks', '📦 Wholesale'] },
+      shop: { label: 'SHOP & CATALOGUE', title: 'Browse the store your way', text: 'Explore everyday products, open the drinks menu, or browse wholesale listings. Search helps you get to a product faster.', chips: ['Groceries', 'Drinks menu', 'Wholesale', 'Product details'] },
+      offers: { label: 'COUPONS & OFFERS', title: 'Check offers before checkout', text: 'See coupons available to your account, review their conditions, and apply an eligible offer to your cart.', chips: ['Available coupons', 'Offer details', 'Apply to cart', 'Order savings'] },
+      orders: { label: 'YOUR ORDERS', title: 'Keep track after checkout', text: 'Open your order history to review placed orders, check their current status, and view order details or invoice options when available.', chips: ['Order history', 'Status updates', 'Order details', 'Invoice download'] },
+      account: { label: 'YOUR ACCOUNT', title: 'Your shopping in one place', text: 'Manage your customer account, see notifications, check buying streak activity, and review saved shopping information.', chips: ['Profile', 'Notifications', 'Buying streak', 'Saved items'] }
+    };
+    const panel = document.getElementById('demo-panel');
+    document.querySelectorAll('[data-demo]').forEach((button) => button.addEventListener('click', () => {
+      document.querySelectorAll('[data-demo]').forEach((tab) => tab.setAttribute('aria-selected', String(tab === button)));
+      const item = previews[button.dataset.demo];
+      panel.innerHTML = `<div class="section-kicker">${item.label}</div><h3>${item.title}</h3><p>${item.text}</p><div class="demo-tiles">${item.chips.map((chip) => `<span>${chip}</span>`).join('')}</div>`;
+    }));
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
