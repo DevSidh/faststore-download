@@ -493,13 +493,20 @@
       state.couponMessage = state.couponApplied ? 'Coupon applied in this demo: sample Rs. 50 off.' : 'Try DIWALI50 to preview the demo offer.';
       render();
     });
-    document.querySelectorAll('[data-demo]').forEach((tab, index, tabs) => tab.addEventListener('keydown', (event) => {
-      if (!['ArrowLeft', 'ArrowRight'].includes(event.key)) return;
-      event.preventDefault();
-      const next = tabs[(index + (event.key === 'ArrowRight' ? 1 : tabs.length - 1)) % tabs.length];
-      next.focus();
-      next.click();
-    }));
+    document.querySelectorAll('[data-demo]').forEach((tab, index, tabs) => {
+      tab.addEventListener('click', () => {
+        state.screen = tab.dataset.demo;
+        state.search = '';
+        render();
+      });
+      tab.addEventListener('keydown', (event) => {
+        if (!['ArrowLeft', 'ArrowRight'].includes(event.key)) return;
+        event.preventDefault();
+        const next = tabs[(index + (event.key === 'ArrowRight' ? 1 : tabs.length - 1)) % tabs.length];
+        next.focus();
+        next.click();
+      });
+    });
     render();
     document.getElementById('year').textContent = new Date().getFullYear();
   </script>
