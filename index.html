@@ -1,16 +1,35 @@
 <!doctype html>
 <html lang="en">
-
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>FastStore App</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#102c25">
+  <meta name="description" content="Get the official Ram Prasad General Store FastStore app for Android.">
+  <title>FastStore — Ram Prasad General Store</title>
+  <style>
+    :root { color-scheme: dark; font-family: system-ui, -apple-system, "Segoe UI", sans-serif; }
+    * { box-sizing: border-box; }
+    body { min-height: 100vh; margin: 0; display: grid; place-items: center; padding: 24px; color: #f5f7f5; background: radial-gradient(ellipse at 50% 0%, #1b493d 0, #102c25 48%, #0b1714 100%); }
+    main { width: min(100%, 560px); padding: clamp(28px, 7vw, 56px); text-align: center; border: 1px solid #ffffff20; border-radius: 28px; background: #ffffff0b; box-shadow: 0 24px 80px #0006; }
+    .mark { width: 76px; height: 76px; margin: 0 auto 24px; display: grid; place-items: center; border-radius: 22px; color: #102c25; background: #f3c84b; font-size: 38px; font-weight: 800; }
+    h1 { margin: 0; font-size: clamp(2rem, 7vw, 3.1rem); letter-spacing: -.04em; }
+    p { margin: 14px 0 28px; color: #d0ddd8; line-height: 1.65; }
+    .download { display: inline-flex; min-height: 54px; align-items: center; justify-content: center; gap: 10px; padding: 0 24px; border-radius: 14px; color: #10251f; background: #f3c84b; font-weight: 750; text-decoration: none; transition: transform .15s ease, background .15s ease; }
+    .download:hover { transform: translateY(-2px); background: #ffda65; }
+    small { display: block; margin-top: 18px; color: #aebeb8; }
+    footer { margin-top: 34px; color: #aebeb8; font-size: .85rem; }
+  </style>
 </head>
-
 <body>
+  <main>
+    <div class="mark" aria-hidden="true">F</div>
     <h1>FastStore</h1>
-    <p>Download the Ram Prasad General Store app for Android.</p>
-    <a href="YOUR_APK_DOWNLOAD_LINK">Download Android app</a>
+    <p>Shop with Ram Prasad General Store using our official Android app.</p>
+    <a class="download" href="https://github.com/DevSidh/Ram-Prasad-Kirana-/releases/download/v3.1.4/Ram-Prasad-General-Store-3.1.4.apk" download>
+      <span aria-hidden="true">↓</span> Download for Android
+    </a>
+    <small>Android may ask you to allow installation from your browser. Only install updates from this official page.</small>
+    <footer>Ram Prasad General Store · Janakpur, Nepal</footer>
+  </main>
 </body>
-
 </html>
