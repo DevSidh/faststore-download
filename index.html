@@ -22,6 +22,12 @@
     }
     * { box-sizing: border-box; }
     body { margin: 0; background: var(--green); color: var(--ink); }
+    main { display: flex; flex-direction: column; }
+    .hero { order: 1; }
+    #demo { order: 2; }
+    #features { order: 3; }
+    #how { order: 4; }
+    .cta { order: 5; }
     a { color: inherit; }
     .wrap { width: min(1160px, calc(100% - 40px)); margin: auto; }
     .topbar { position: sticky; top: 0; z-index: 5; border-bottom: 1px solid var(--line); background: #10251fea; backdrop-filter: blur(14px); }
@@ -92,6 +98,9 @@
     .demo-controls button { flex: 0 0 auto; padding: 10px 14px; border: 1px solid #ffffff20; border-radius: 99px; color: #d9e3da; background: transparent; cursor: pointer; }
     .demo-controls button[aria-selected="true"] { border-color: var(--gold); color: #1b2d22; background: var(--gold); font-weight: 800; }
     .demo-content { min-height: 280px; padding: 30px; }
+    .demo-preview-label { display: inline-flex; align-items: center; gap: 8px; margin-bottom: 18px; padding: 7px 10px; border: 1px solid #ffffff20; border-radius: 99px; color: #d8e9db; background: #ffffff08; font-size: .72rem; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; }
+    .demo-preview-label i { width: 7px; height: 7px; border-radius: 50%; background: var(--mint); box-shadow: 0 0 10px var(--mint); }
+    .demo-content h3 { letter-spacing: -.03em; }
     .demo-content h3 { margin: 0 0 12px; font-size: 1.55rem; }
     .demo-content p { max-width: 620px; color: #c1d0c4; line-height: 1.7; }
     .demo-tiles { display: flex; flex-wrap: wrap; gap: 9px; margin-top: 19px; }
@@ -170,7 +179,7 @@
 
     <section class="section alt" id="demo">
       <div class="wrap demo-layout">
-        <div class="demo-copy"><div class="section-kicker">Try the interactive tour</div><h2>Take a look around FastStore</h2><p>Tap a section to see what customers can do there. This is a website preview of the customer experience; install the app for the live store and account features.</p>
+        <div class="demo-copy"><div class="section-kicker">Watch a demo</div><h2>See FastStore in action</h2><p>Tap through the customer app sections to preview the shopping experience. This interactive website demo is a visual guide; install FastStore for the live catalogue, account and order features.</p>
           <ul class="demo-points"><li><span class="check">✓</span><span>Browse the customer app, not store administration tools.</span></li><li><span class="check">✓</span><span>Explore shopping, coupons, account and order areas.</span></li><li><span class="check">✓</span><span>Download the Android app when you’re ready to shop.</span></li></ul>
         </div>
         <div class="demo-card">
@@ -182,7 +191,7 @@
             <button role="tab" aria-selected="false" aria-controls="demo-panel" data-demo="account">Account</button>
           </div>
           <div class="demo-content" id="demo-panel" role="tabpanel" aria-live="polite">
-            <div class="section-kicker">CUSTOMER HOME</div><h3>Start with what you need</h3><p>Search the catalogue, browse categories, discover featured products, and open current store announcements from the home experience.</p><div class="demo-tiles"><span>🔎 Product search</span><span>🥫 Groceries</span><span>🥤 Drinks</span><span>📦 Wholesale</span></div>
+            <div class="demo-preview-label"><i></i> FastStore customer preview</div><div class="section-kicker">CUSTOMER HOME</div><h3>Start with what you need</h3><p>Search the catalogue, browse categories, discover featured products, and open current store announcements from the home experience.</p><div class="demo-tiles"><span>🔎 Product search</span><span>🥫 Groceries</span><span>🥤 Drinks</span><span>📦 Wholesale</span></div>
           </div>
         </div>
       </div>
@@ -214,7 +223,7 @@
     document.querySelectorAll('[data-demo]').forEach((button) => button.addEventListener('click', () => {
       document.querySelectorAll('[data-demo]').forEach((tab) => tab.setAttribute('aria-selected', String(tab === button)));
       const item = previews[button.dataset.demo];
-      panel.innerHTML = `<div class="section-kicker">${item.label}</div><h3>${item.title}</h3><p>${item.text}</p><div class="demo-tiles">${item.chips.map((chip) => `<span>${chip}</span>`).join('')}</div>`;
+      panel.innerHTML = `<div class="demo-preview-label"><i></i> FastStore customer preview</div><div class="section-kicker">${item.label}</div><h3>${item.title}</h3><p>${item.text}</p><div class="demo-tiles">${item.chips.map((chip) => `<span>${chip}</span>`).join('')}</div>`;
     }));
     document.getElementById('year').textContent = new Date().getFullYear();
   </script>
