@@ -99,6 +99,45 @@
     .demo-content p { max-width: 620px; color: #c1d0c4; line-height: 1.7; }
     .demo-tiles { display: flex; flex-wrap: wrap; gap: 9px; margin-top: 19px; }
     .demo-tiles span { padding: 9px 12px; border: 1px solid #ffffff1e; border-radius: 11px; background: #ffffff09; font-size: .84rem; }
+    .demo-app { min-height: 390px; padding: 22px; background: #f4f5ef; color: #1a2b22; }
+    .demo-toolbar { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin: -22px -22px 20px; padding: 15px 20px; border-bottom: 1px solid #dfe5dc; background: #fff; }
+    .demo-brand { font-size: .85rem; font-weight: 850; }
+    .demo-cart-button { padding: 8px 11px; border: 1px solid #d9e2d8; border-radius: 10px; color: #20513a; background: #f8faf6; font-weight: 750; cursor: pointer; }
+    .demo-cart-button b { display: inline-grid; min-width: 20px; height: 20px; place-items: center; margin-left: 4px; border-radius: 50%; color: #17392e; background: var(--gold); }
+    .demo-app .section-kicker { color: #39805c; font-size: .68rem; }
+    .demo-app h3 { margin: 8px 0; font-size: 1.35rem; letter-spacing: -.035em; }
+    .demo-app p { margin: 7px 0 18px; color: #617168; font-size: .9rem; line-height: 1.55; }
+    .demo-notice { margin: 0 0 17px; padding: 9px 11px; border: 1px solid #e6d99f; border-radius: 10px; color: #66551e; background: #fff9dd; font-size: .75rem; line-height: 1.45; }
+    .demo-category-row { display: flex; flex-wrap: wrap; gap: 9px; margin: 18px 0; }
+    .demo-category { flex: 1 1 125px; min-height: 84px; padding: 13px; border: 1px solid #dfe7dc; border-radius: 14px; color: #1e3529; background: white; text-align: left; cursor: pointer; }
+    .demo-category strong,.demo-category small { display: block; }
+    .demo-category strong { margin-top: 5px; }
+    .demo-category small { margin-top: 3px; color: #728076; }
+    .demo-search { width: 100%; min-height: 43px; margin: 2px 0 14px; padding: 0 13px; border: 1px solid #dbe3d9; border-radius: 11px; color: #263a2f; background: white; font: inherit; }
+    .demo-products { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 10px; }
+    .demo-product { padding: 12px; border: 1px solid #e0e6dc; border-radius: 14px; background: white; }
+    .demo-product-emoji { display: grid; height: 70px; place-items: center; margin-bottom: 9px; border-radius: 10px; background: #f1f3e9; font-size: 2rem; }
+    .demo-product-name { font-size: .89rem; font-weight: 800; }
+    .demo-product-meta { margin-top: 3px; color: #738077; font-size: .73rem; }
+    .demo-product-bottom { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-top: 10px; }
+    .demo-product-price { color: #1f553b; font-size: .85rem; font-weight: 850; }
+    .demo-add,.demo-primary { min-height: 36px; padding: 0 12px; border: 0; border-radius: 9px; color: #17392e; background: var(--gold); font-weight: 850; cursor: pointer; }
+    .demo-primary { min-height: 44px; padding: 0 16px; }
+    .demo-empty { padding: 24px 12px; border: 1px dashed #cbd6c9; border-radius: 14px; color: #65756a; text-align: center; }
+    .demo-cart-list { display: grid; gap: 9px; }
+    .demo-cart-row { display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 10px; padding: 12px; border: 1px solid #e0e6dc; border-radius: 13px; background: white; }
+    .demo-cart-row strong,.demo-cart-row small { display: block; }
+    .demo-cart-row small { margin-top: 4px; color: #718076; }
+    .demo-quantity { display: flex; align-items: center; gap: 7px; }
+    .demo-quantity button { width: 29px; height: 29px; border: 1px solid #d7e0d5; border-radius: 8px; color: #24543a; background: #f8faf6; font-weight: 900; cursor: pointer; }
+    .demo-total { display: flex; justify-content: space-between; gap: 12px; margin-top: 8px; padding-top: 13px; border-top: 1px solid #dfe5dc; font-weight: 850; }
+    .demo-coupon-box,.demo-info-card { margin: 13px 0; padding: 15px; border: 1px solid #dfe7dc; border-radius: 13px; background: white; }
+    .demo-coupon-form { display: flex; gap: 8px; margin-top: 11px; }
+    .demo-coupon-form input { min-width: 0; flex: 1; padding: 0 11px; border: 1px solid #dbe3d9; border-radius: 9px; font: inherit; text-transform: uppercase; }
+    .demo-status { min-height: 20px; margin: 8px 0 0 !important; color: #31754e !important; font-size: .78rem !important; }
+    .demo-cta-row { display: flex; flex-wrap: wrap; gap: 9px; margin-top: 16px; }
+    .demo-secondary { min-height: 40px; padding: 0 13px; border: 1px solid #d7e0d5; border-radius: 9px; color: #28563d; background: white; font-weight: 750; cursor: pointer; }
+    .demo-app .demo-primary:disabled { opacity: .5; cursor: not-allowed; }
     .steps { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; counter-reset: step; }
     .step { padding: 24px; border: 1px solid var(--line); border-radius: 20px; background: #ffffff08; }
     .step:before { counter-increment: step; content: "0" counter(step); display: block; margin-bottom: 18px; color: var(--gold); font-size: .85rem; font-weight: 900; }
@@ -156,19 +195,23 @@
 
     <section class="section alt" id="demo">
       <div class="wrap demo-layout">
-        <div class="demo-copy"><div class="section-kicker">Watch a demo</div><h2>See FastStore in action</h2><p>Tap through the customer app sections to preview the shopping experience. This interactive website demo is a visual guide; install FastStore for the live catalogue, account and order features.</p>
-          <ul class="demo-points"><li><span class="check">✓</span><span>Browse the customer app, not store administration tools.</span></li><li><span class="check">✓</span><span>Explore shopping, coupons, account and order areas.</span></li><li><span class="check">✓</span><span>Download the Android app when you’re ready to shop.</span></li></ul>
+        <div class="demo-copy"><div class="section-kicker">Interactive app demo</div><h2>Try a sample shopping journey</h2><p>Explore the customer app preview: browse sample products, add them to a demo cart, try the sample coupon, and preview checkout and account screens.</p>
+          <ul class="demo-points"><li><span class="check">✓</span><span>Browse sample groceries, drinks, and wholesale items.</span></li><li><span class="check">✓</span><span>Change quantities, remove items, and try a demo coupon.</span></li><li><span class="check">✓</span><span>Preview checkout without submitting a real order.</span></li></ul>
         </div>
         <div class="demo-card">
           <div class="demo-controls" role="tablist" aria-label="FastStore app sections">
             <button role="tab" aria-selected="true" aria-controls="demo-panel" data-demo="home">Home</button>
             <button role="tab" aria-selected="false" aria-controls="demo-panel" data-demo="shop">Shop</button>
+            <button role="tab" aria-selected="false" aria-controls="demo-panel" data-demo="drinks">Drinks</button>
+            <button role="tab" aria-selected="false" aria-controls="demo-panel" data-demo="wholesale">Wholesale</button>
             <button role="tab" aria-selected="false" aria-controls="demo-panel" data-demo="offers">Coupons</button>
+            <button role="tab" aria-selected="false" aria-controls="demo-panel" data-demo="cart">Cart</button>
             <button role="tab" aria-selected="false" aria-controls="demo-panel" data-demo="orders">Orders</button>
             <button role="tab" aria-selected="false" aria-controls="demo-panel" data-demo="account">Account</button>
           </div>
-          <div class="demo-content" id="demo-panel" role="tabpanel" aria-live="polite">
-            <div class="demo-preview-label"><i></i> FastStore customer preview</div><div class="section-kicker">CUSTOMER HOME</div><h3>Start with what you need</h3><p>Search the catalogue, browse categories, discover featured products, and open current store announcements from the home experience.</p><div class="demo-tiles"><span>🔎 Product search</span><span>🥫 Groceries</span><span>🥤 Drinks</span><span>📦 Wholesale</span></div>
+          <div class="demo-app" id="demo-panel" role="tabpanel" aria-live="polite">
+            <div class="demo-toolbar"><span class="demo-brand">FastStore <span style="color:#738076;font-weight:500">· sample store</span></span><button class="demo-cart-button" type="button" data-action="screen" data-screen="cart" aria-label="Open demo cart">Cart <b id="demo-cart-count">0</b></button></div>
+            <div id="demo-view"></div>
           </div>
         </div>
       </div>
@@ -206,19 +249,258 @@
   </main>
   <footer class="site-footer"><div class="wrap foot-inner"><span>© <span id="year"></span> Ram Prasad General Store · FastStore</span><a href="https://github.com/DevSidh/Ram-Prasad-Kirana-/releases/latest">View latest app release</a></div></footer>
   <script>
-    const previews = {
-      home: { label: 'CUSTOMER HOME', title: 'Start with what you need', text: 'Search the catalogue, browse categories, discover featured products, and open current store announcements from the home experience.', chips: ['🔎 Product search', '🥫 Groceries', '🥤 Drinks', '📦 Wholesale'] },
-      shop: { label: 'SHOP & CATALOGUE', title: 'Browse the store your way', text: 'Explore everyday products, open the drinks menu, or browse wholesale listings. Search helps you get to a product faster.', chips: ['Groceries', 'Drinks menu', 'Wholesale', 'Product details'] },
-      offers: { label: 'COUPONS & OFFERS', title: 'Check offers before checkout', text: 'See coupons available to your account, review their conditions, and apply an eligible offer to your cart.', chips: ['Available coupons', 'Offer details', 'Apply to cart', 'Order savings'] },
-      orders: { label: 'YOUR ORDERS', title: 'Keep track after checkout', text: 'Open your order history to review placed orders, check their current status, and view order details or invoice options when available.', chips: ['Order history', 'Status updates', 'Order details', 'Invoice download'] },
-      account: { label: 'YOUR ACCOUNT', title: 'Your shopping in one place', text: 'Manage your customer account, see notifications, check buying streak activity, and review saved shopping information.', chips: ['Profile', 'Notifications', 'Buying streak', 'Saved items'] }
+    const products = [
+      { id: 'milk', name: 'Fresh Milk', category: 'Groceries', price: 110, unit: '1 litre', icon: '🥛' },
+      { id: 'rice', name: 'Everyday Rice', category: 'Groceries', price: 185, unit: '1 kg', icon: '🍚' },
+      { id: 'noodles', name: 'Wai Wai Noodles', category: 'Groceries', price: 25, unit: '1 pack', icon: '🍜' },
+      { id: 'oil', name: 'Cooking Oil', category: 'Groceries', price: 285, unit: '1 litre', icon: '🫙' },
+      { id: 'cola', name: 'Chilled Cola', category: 'Drinks', price: 75, unit: '500 ml', icon: '🥤' },
+      { id: 'energy', name: 'Energy Drink', category: 'Drinks', price: 180, unit: '1 can', icon: '⚡' },
+      { id: 'juice', name: 'Fruit Juice', category: 'Drinks', price: 95, unit: '1 bottle', icon: '🧃' },
+      { id: 'noodles-case', name: 'Noodles Case', category: 'Wholesale', price: 600, unit: 'sample case', icon: '📦' },
+      { id: 'snack-case', name: 'Snack Case', category: 'Wholesale', price: 840, unit: 'sample case', icon: '🍪' },
+      { id: 'water-case', name: 'Water Case', category: 'Wholesale', price: 360, unit: 'sample case', icon: '💧' }
+    ];
+    const demoPanel = document.getElementById('demo-panel');
+    const demoView = document.getElementById('demo-view');
+    const state = { screen: 'home', cart: {}, couponApplied: false, couponMessage: '', search: '' };
+    const element = (tag, className, text) => {
+      const node = document.createElement(tag);
+      if (className) node.className = className;
+      if (text !== undefined) node.textContent = text;
+      return node;
     };
-    const panel = document.getElementById('demo-panel');
-    document.querySelectorAll('[data-demo]').forEach((button) => button.addEventListener('click', () => {
-      document.querySelectorAll('[data-demo]').forEach((tab) => tab.setAttribute('aria-selected', String(tab === button)));
-      const item = previews[button.dataset.demo];
-      panel.innerHTML = `<div class="demo-preview-label"><i></i> FastStore customer preview</div><div class="section-kicker">${item.label}</div><h3>${item.title}</h3><p>${item.text}</p><div class="demo-tiles">${item.chips.map((chip) => `<span>${chip}</span>`).join('')}</div>`;
+    const makeButton = (text, action, extra = {}) => {
+      const node = element('button', extra.className || 'demo-secondary', text);
+      node.type = 'button';
+      node.dataset.action = action;
+      Object.entries(extra).forEach(([key, value]) => {
+        if (key === 'className') return;
+        if (key === 'ariaLabel') node.setAttribute('aria-label', value);
+        else node.dataset[key] = value;
+      });
+      return node;
+    };
+    const formatPrice = (value) => `Rs. ${value.toFixed(2)}`;
+    const cartCount = () => Object.values(state.cart).reduce((sum, quantity) => sum + quantity, 0);
+    const cartSubtotal = () => products.reduce((sum, product) => sum + product.price * (state.cart[product.id] || 0), 0);
+    const couponDiscount = () => state.couponApplied ? Math.min(cartSubtotal(), 50) : 0;
+    function renderNotice() {
+      demoView.append(element('div', 'demo-notice', 'Interactive sample only. Cart, coupon and checkout actions here do not affect the live app or place an order.'));
+    }
+    function renderHeading(kicker, title, description) {
+      demoView.append(element('div', 'section-kicker', kicker), element('h3', '', title), element('p', '', description));
+    }
+    function renderProductCards(items) {
+      const grid = element('div', 'demo-products');
+      if (!items.length) {
+        grid.append(element('div', 'demo-empty', 'No sample products match that search.'));
+        demoView.append(grid);
+        return;
+      }
+      items.forEach((product) => {
+        const card = element('article', 'demo-product');
+        card.append(element('div', 'demo-product-emoji', product.icon));
+        card.append(element('div', 'demo-product-name', product.name));
+        card.append(element('div', 'demo-product-meta', `${product.category} · ${product.unit} · sample price`));
+        const bottom = element('div', 'demo-product-bottom');
+        bottom.append(element('span', 'demo-product-price', formatPrice(product.price)));
+        bottom.append(makeButton(state.cart[product.id] ? `Added (${state.cart[product.id]}) +` : 'Add +', 'add', { className: 'demo-add', sku: product.id }));
+        card.append(bottom);
+        grid.append(card);
+      });
+      demoView.append(grid);
+    }
+    function renderProductScreen(screen) {
+      const category = screen === 'drinks' ? 'Drinks' : screen === 'wholesale' ? 'Wholesale' : '';
+      const titles = { shop: ['SHOP THE CATALOGUE', 'Browse products', 'Search sample products and add items to your demo cart.'], drinks: ['DRINKS MENU', 'Choose a drink', 'Browse a few sample drinks from the customer menu.'], wholesale: ['WHOLESALE', 'Shop by the case', 'Preview sample wholesale listings. Displayed prices are for demonstration.'] };
+      renderHeading(...titles[screen]);
+      const search = element('input', 'demo-search');
+      search.type = 'search';
+      search.placeholder = 'Search sample products';
+      search.setAttribute('aria-label', 'Search sample products');
+      search.value = state.search;
+      search.addEventListener('input', () => {
+        state.search = search.value;
+        render();
+        const refreshed = demoView.querySelector('.demo-search');
+        refreshed.focus();
+        refreshed.setSelectionRange(refreshed.value.length, refreshed.value.length);
+      });
+      demoView.append(search);
+      const query = state.search.trim().toLowerCase();
+      const items = products.filter((product) => (!category || product.category === category) && (!query || `${product.name} ${product.category}`.toLowerCase().includes(query)));
+      renderProductCards(items);
+    }
+    function renderCart() {
+      renderHeading('YOUR CART', 'Review your items', 'Change quantities or remove sample items.');
+      const selected = products.filter((product) => state.cart[product.id]);
+      if (!selected.length) {
+        demoView.append(element('div', 'demo-empty', 'Your demo cart is empty. Add a few sample products to try the cart.'));
+        const row = element('div', 'demo-cta-row');
+        row.append(makeButton('Browse products', 'screen', { screen: 'shop', className: 'demo-primary' }));
+        demoView.append(row);
+        return;
+      }
+      const list = element('div', 'demo-cart-list');
+      selected.forEach((product) => {
+        const row = element('div', 'demo-cart-row');
+        const details = element('div');
+        details.append(element('strong', '', product.name));
+        details.append(element('small', '', `${formatPrice(product.price)} × ${state.cart[product.id]} = ${formatPrice(product.price * state.cart[product.id])}`));
+        const quantity = element('div', 'demo-quantity');
+        quantity.append(makeButton('−', 'decrease', { sku: product.id, ariaLabel: `Remove one ${product.name}` }));
+        quantity.append(element('strong', '', String(state.cart[product.id])));
+        quantity.append(makeButton('+', 'add', { sku: product.id, ariaLabel: `Add one ${product.name}` }));
+        quantity.append(makeButton('×', 'remove', { sku: product.id, ariaLabel: `Remove ${product.name}` }));
+        row.append(details, quantity);
+        list.append(row);
+      });
+      demoView.append(list);
+      renderCouponForm();
+      const subtotal = cartSubtotal();
+      demoView.append(element('div', 'demo-total', `Subtotal  ${formatPrice(subtotal)}`));
+      if (state.couponApplied) demoView.append(element('div', 'demo-total', `DIWALI50 demo saving  − ${formatPrice(couponDiscount())}`));
+      demoView.append(element('div', 'demo-total', `Demo total  ${formatPrice(Math.max(0, subtotal - couponDiscount()))}`));
+      const actions = element('div', 'demo-cta-row');
+      actions.append(makeButton('Preview checkout', 'checkout', { className: 'demo-primary' }));
+      actions.append(makeButton('Keep shopping', 'screen', { screen: 'shop' }));
+      demoView.append(actions);
+    }
+    function renderCouponForm() {
+      const box = element('div', 'demo-coupon-box');
+      box.append(element('strong', '', 'Try a sample coupon'));
+      box.append(element('p', '', 'Enter DIWALI50 to preview a sample Rs. 50 reduction. Actual app offer rules may differ.'));
+      const form = element('form', 'demo-coupon-form');
+      form.dataset.form = 'coupon';
+      const input = element('input');
+      input.name = 'coupon';
+      input.placeholder = 'Coupon code';
+      input.setAttribute('aria-label', 'Demo coupon code');
+      input.value = state.couponApplied ? 'DIWALI50' : '';
+      const submit = element('button', 'demo-primary', state.couponApplied ? 'Applied ✓' : 'Apply');
+      submit.type = 'submit';
+      form.append(input, submit);
+      box.append(form);
+      if (state.couponMessage) box.append(element('p', 'demo-status', state.couponMessage));
+      demoView.append(box);
+    }
+    function renderOffers() {
+      renderHeading('COUPONS & OFFERS', 'Try a demo coupon', 'Use this sample coupon in the demo cart. This does not change live offers in the app.');
+      renderCouponForm();
+      const actions = element('div', 'demo-cta-row');
+      actions.append(makeButton('Open demo cart', 'screen', { screen: 'cart', className: 'demo-primary' }));
+      demoView.append(actions);
+    }
+    function renderOrders() {
+      renderHeading('ORDER HISTORY · SAMPLE', 'Your orders', 'This example illustrates the order history screen. It is not a real customer order.');
+      const card = element('div', 'demo-info-card');
+      card.append(element('strong', '', 'Sample order · FS-DEMO-1042'));
+      card.append(element('p', '', 'Status: Preparing · 2 sample items · Placed today'));
+      card.append(element('small', '', 'Order data is illustrative and is not connected to the store backend.'));
+      demoView.append(card);
+      demoView.append(makeButton('View sample order details', 'order-details', { className: 'demo-primary' }));
+    }
+    function renderAccount() {
+      renderHeading('CUSTOMER ACCOUNT · SAMPLE', 'Your FastStore account', 'A preview of customer account tools. No sign-in or personal details are requested in this website demo.');
+      const cards = [
+        ['👤', 'Demo shopper', 'Sample customer profile'],
+        ['🔔', 'Notifications', 'Store updates and order alerts'],
+        ['🎁', 'Buying streak', 'Sample streak and reward preview'],
+        ['♡', 'Saved items', 'Keep favourite products handy']
+      ];
+      const grid = element('div', 'demo-products');
+      cards.forEach(([icon, title, text]) => {
+        const card = element('div', 'demo-info-card');
+        card.append(element('div', 'demo-product-emoji', icon), element('strong', '', title), element('p', '', text));
+        grid.append(card);
+      });
+      demoView.append(grid);
+    }
+    function renderCheckout() {
+      renderHeading('CHECKOUT · DEMO ONLY', 'Order preview ready', 'This is a sample confirmation. No order was sent to the store and no payment was taken.');
+      const card = element('div', 'demo-info-card');
+      card.append(element('strong', '', `Sample order total: ${formatPrice(Math.max(0, cartSubtotal() - couponDiscount()))}`));
+      card.append(element('p', '', `${cartCount()} sample item${cartCount() === 1 ? '' : 's'} · Payment and delivery are not being processed.`));
+      demoView.append(card);
+      const actions = element('div', 'demo-cta-row');
+      actions.append(makeButton('Back to demo cart', 'screen', { screen: 'cart', className: 'demo-primary' }));
+      actions.append(makeButton('Restart demo', 'reset', {}));
+      demoView.append(actions);
+    }
+    function renderOrderDetails() {
+      renderHeading('SAMPLE ORDER DETAILS', 'Preparing your order', 'This sample status is for demonstration only. Live order progress is available inside FastStore after placing an order.');
+      const steps = element('div', 'demo-info-card');
+      steps.append(element('p', '', '✓ Order received   ·   ● Preparing   ·   ○ Ready for delivery'));
+      demoView.append(steps);
+      demoView.append(makeButton('Back to orders', 'screen', { screen: 'orders', className: 'demo-primary' }));
+    }
+    function render() {
+      document.querySelectorAll('[data-demo]').forEach((tab) => {
+        const active = tab.dataset.demo === state.screen || (['checkout', 'order-details'].includes(state.screen) && tab.dataset.demo === (state.screen === 'checkout' ? 'cart' : 'orders'));
+        tab.setAttribute('aria-selected', String(active));
+        tab.tabIndex = active ? 0 : -1;
+      });
+      const count = document.getElementById('demo-cart-count');
+      if (count) count.textContent = String(cartCount());
+      demoView.replaceChildren();
+      renderNotice();
+      if (state.screen === 'home') {
+        renderHeading('CUSTOMER HOME', 'What would you like today?', 'Browse the sample store, then add products to your demo cart.');
+        const categories = element('div', 'demo-category-row');
+        [['🥫', 'Groceries', 'Everyday items', 'shop'], ['🥤', 'Drinks', 'Browse beverages', 'drinks'], ['📦', 'Wholesale', 'Sample cases', 'wholesale']].forEach(([icon, name, note, screen]) => {
+          const card = makeButton('', 'screen', { className: 'demo-category', screen });
+          card.append(element('span', '', icon), element('strong', '', name), element('small', '', note));
+          categories.append(card);
+        });
+        demoView.append(categories);
+        demoView.append(element('strong', '', 'Popular sample products'));
+        renderProductCards(products.slice(0, 4));
+        const offer = element('div', 'demo-coupon-box');
+        offer.append(element('strong', '', 'Promotion preview · DIWALI50'));
+        offer.append(element('p', '', 'Try the sample coupon in the demo.'));
+        offer.append(makeButton('Explore coupons', 'screen', { screen: 'offers', className: 'demo-primary' }));
+        demoView.append(offer);
+      } else if (['shop', 'drinks', 'wholesale'].includes(state.screen)) renderProductScreen(state.screen);
+      else if (state.screen === 'offers') renderOffers();
+      else if (state.screen === 'cart') renderCart();
+      else if (state.screen === 'checkout') renderCheckout();
+      else if (state.screen === 'orders') renderOrders();
+      else if (state.screen === 'order-details') renderOrderDetails();
+      else if (state.screen === 'account') renderAccount();
+    }
+    demoPanel.addEventListener('click', (event) => {
+      const button = event.target.closest('button[data-action]');
+      if (!button) return;
+      const { action, sku, screen } = button.dataset;
+      if (action === 'screen') { state.screen = screen; state.search = ''; }
+      else if (action === 'add' && sku) state.cart[sku] = (state.cart[sku] || 0) + 1;
+      else if (action === 'decrease' && sku) {
+        state.cart[sku] = Math.max(0, (state.cart[sku] || 0) - 1);
+        if (!state.cart[sku]) delete state.cart[sku];
+      } else if (action === 'remove' && sku) delete state.cart[sku];
+      else if (action === 'checkout') state.screen = 'checkout';
+      else if (action === 'order-details') state.screen = 'order-details';
+      else if (action === 'reset') { state.cart = {}; state.couponApplied = false; state.couponMessage = ''; state.screen = 'home'; }
+      render();
+    });
+    demoPanel.addEventListener('submit', (event) => {
+      const form = event.target.closest('form[data-form="coupon"]');
+      if (!form) return;
+      event.preventDefault();
+      const code = new FormData(form).get('coupon').trim().toUpperCase();
+      state.couponApplied = code === 'DIWALI50';
+      state.couponMessage = state.couponApplied ? 'Coupon applied in this demo: sample Rs. 50 off.' : 'Try DIWALI50 to preview the demo offer.';
+      render();
+    });
+    document.querySelectorAll('[data-demo]').forEach((tab, index, tabs) => tab.addEventListener('keydown', (event) => {
+      if (!['ArrowLeft', 'ArrowRight'].includes(event.key)) return;
+      event.preventDefault();
+      const next = tabs[(index + (event.key === 'ArrowRight' ? 1 : tabs.length - 1)) % tabs.length];
+      next.focus();
+      next.click();
     }));
+    render();
     document.getElementById('year').textContent = new Date().getFullYear();
   </script>
 </body>
