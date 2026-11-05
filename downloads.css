@@ -1,0 +1,12 @@
+.download-support { padding-top: 12px !important; }
+.download-support > .wrap > h2 { margin-bottom: 6px; }
+#release-status { color: var(--muted); overflow-wrap: anywhere; }
+.download-tools { display: flex; flex-wrap: wrap; align-items: center; gap: 14px; margin: 18px 0 22px; }
+.download-tools button { font: inherit; cursor: pointer; }
+.download-tools button:disabled { opacity: .65; cursor: wait; }
+#download-help { width: min(540px, calc(100% - 28px)); max-height: calc(100dvh - 40px); overflow: auto; padding: 32px; border: 1px solid var(--line); border-radius: 22px; color: var(--fg); background: var(--bg); box-shadow: var(--shadow); }
+#download-help::backdrop { background: #0b0a1a99; backdrop-filter: blur(5px); }
+#download-help h2 { padding-right: 20px; line-height: 1.2; }
+#download-help p { color: var(--muted); }
+.download-close { position: absolute; right: 12px; top: 10px; width: 36px; height: 36px; border: 0; border-radius: 50%; background: var(--soft); color: var(--fg); font-size: 25px; cursor: pointer; }
+@media (max-width: 500px) { #download-help { padding: 24px 20px; } #download-help .button { width: 100%; } }
