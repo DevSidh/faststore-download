@@ -7,7 +7,7 @@
   const status = document.getElementById('release-status');
   const refresh = document.getElementById('refresh-release');
   const dialog = document.getElementById('download-help');
-  const cacheKey = 'faststore-public-release-v1';
+  const cacheKey = 'faststore-public-release-v3.2.0';
   let refreshing = false;
 
   function officialAsset(url) {
@@ -92,7 +92,7 @@
   links.forEach(link => link.addEventListener('click', () => {
     const android = link.dataset.downloadPlatform === 'android';
     document.getElementById('download-instructions').textContent = android
-      ? 'Android: after the APK finishes, open Files → Downloads and tap it. Choose Update; do not uninstall FastStore. Allow installation from your browser only if Android asks.'
+      ? 'Android: after the APK finishes, open Files → Downloads and tap it. Choose Update; do not uninstall FastStore. Allow installation from your browser only if Android asks. If a Samsung message names Auto Blocker, use the Auto Blocker guide in Download & installation help. The app cannot change phone security settings.'
       : 'Windows: after the ZIP finishes, extract the whole folder, then open RamPrasadBilling.exe. Keep all included files together and preserve your store records.';
     document.getElementById('download-retry').href = link.href;
     if (typeof dialog.showModal === 'function' && !dialog.open) dialog.showModal();
