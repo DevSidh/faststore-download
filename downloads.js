@@ -7,7 +7,7 @@
   const status = document.getElementById('release-status');
   const refresh = document.getElementById('refresh-release');
   const dialog = document.getElementById('download-help');
-  const cacheKey = 'faststore-public-release-v3.3.4';
+  const cacheKey = 'faststore-public-release-v3.3.5';
   let refreshing = false;
 
   function officialAsset(url) {
