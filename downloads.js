@@ -7,7 +7,7 @@
   const status = document.getElementById('release-status');
   const refresh = document.getElementById('refresh-release');
   const dialog = document.getElementById('download-help');
-  const cacheKey = 'faststore-public-release-v3.3.5';
+  const cacheKey = 'faststore-public-release-v3.3.6';
   let refreshing = false;
 
   function officialAsset(url) {
@@ -20,6 +20,18 @@
 
   const links = Array.from(document.querySelectorAll('a[href]')).filter(link =>
     officialAsset(link.href) && /\.(apk|zip)$/i.test(new URL(link.href).pathname));
+  // The audited Windows build is published with the site until the GitHub
+  // release workflow has produced a v3.3.6 asset. Keep Android on its last
+  // verified public release.
+  const auditedWindows = 'downloads/FastStore-Windows-3.3.6-Audited-20261112.zip';
+  document.querySelectorAll('a[href*="FastStore-Windows"]').forEach(link => {
+    link.href = auditedWindows;
+    link.target = '_self';
+    link.removeAttribute('rel');
+  });
+  document.querySelectorAll('#downloads .download p').forEach(element => {
+    element.textContent = 'Ram Prasad General Store · Janakpur · Android 3.3.4 · Windows 3.3.6';
+  });
   links.forEach(link => {
     link.dataset.downloadPlatform = /\.apk$/i.test(new URL(link.href).pathname) ? 'android' : 'windows';
     link.target = '_blank';
